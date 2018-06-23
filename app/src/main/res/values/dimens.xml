@@ -1,0 +1,7 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <dimen name="edit_text_size">45sp</dimen>
+    <dimen name="big_margin">10dp</dimen>
+    <dimen name="double_margin">20dp</dimen>
+    <dimen name="login_icon">200dp</dimen>
+</resources>
