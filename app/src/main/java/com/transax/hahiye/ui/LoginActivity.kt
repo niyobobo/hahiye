@@ -1,4 +1,4 @@
-package com.transax.hahiye.view.ui
+package com.transax.hahiye.ui
 
 import android.arch.lifecycle.ViewModelProviders
 import android.databinding.DataBindingUtil
@@ -7,11 +7,11 @@ import android.support.v7.app.AppCompatActivity
 import android.widget.Toast
 import com.transax.hahiye.R
 import com.transax.hahiye.databinding.ActivityLoginBinding
-import com.transax.hahiye.view.callback.LoginResultCallback
-import com.transax.hahiye.viewmodel.LoginViewFactory
-import com.transax.hahiye.viewmodel.LoginViewModel
+import com.transax.hahiye.callback.ResultCallback
+import com.transax.hahiye.viewModel.LoginViewFactory
+import com.transax.hahiye.viewModel.LoginViewModel
 
-class Login : AppCompatActivity(), LoginResultCallback {
+class LoginActivity : AppCompatActivity(), ResultCallback {
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)

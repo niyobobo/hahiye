@@ -1,14 +1,13 @@
-package com.transax.hahiye.view.ui
+package com.transax.hahiye.ui
 
-import android.content.Intent
 import android.os.Bundle
 import android.support.v7.app.AppCompatActivity
+import com.transax.hahiye.R
 
-class SplashScreen : AppCompatActivity() {
+class SignUpActivity : AppCompatActivity() {
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
-        startActivity(Intent(this, Login::class.java))
-        finish()
+        setContentView(R.layout.activity_sign_up)
     }
 }

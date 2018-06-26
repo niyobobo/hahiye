@@ -4,13 +4,13 @@
 
     <application
         android:allowBackup="true"
-        android:icon="@drawable/ic_hahiye"
+        android:icon="@mipmap/ic_launcher"
         android:label="@string/app_name"
-        android:roundIcon="@drawable/ic_hahiye"
+        android:roundIcon="@mipmap/ic_launcher"
         android:supportsRtl="true"
         android:theme="@style/AppTheme">
         <activity
-            android:name="com.transax.hahiye.view.ui.SplashScreen"
+            android:name=".ui.SplashScreen"
             android:theme="@style/SplashScreen">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
@@ -19,8 +19,9 @@
             </intent-filter>
         </activity>
         <activity
-            android:name="com.transax.hahiye.view.ui.Login"
-            android:theme="@style/AppTheme.NoActionBar" />
+            android:name=".ui.LoginActivity"
+            android:theme="@style/LoginTheme" />
+        <activity android:name=".ui.SignUpActivity"></activity>
     </application>
 
 </manifest>

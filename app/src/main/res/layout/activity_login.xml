@@ -3,22 +3,26 @@
     xmlns:app="http://schemas.android.com/apk/res-auto">
 
     <data>
+
         <variable
             name="viewModel"
-            type="com.transax.hahiye.viewmodel.LoginViewModel" />
+            type="com.transax.hahiye.viewModel.LoginViewModel" />
     </data>
 
     <android.support.constraint.ConstraintLayout
         android:layout_width="match_parent"
-        android:layout_height="match_parent">
+        android:layout_height="match_parent"
+        android:background="@drawable/bg_login"
+        android:focusable="true"
+        android:focusableInTouchMode="true">
 
         <android.support.v7.widget.CardView
             android:id="@+id/cardView2"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:layout_margin="30dp"
-            android:background="@color/white_color"
-            app:cardCornerRadius="@dimen/double_margin"
+            android:layout_margin="@dimen/edit_text_size"
+            android:background="@color/colorWhite"
+            app:cardCornerRadius="@dimen/big_margin"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toTopOf="parent">
@@ -33,29 +37,79 @@
                     android:layout_width="@dimen/login_icon"
                     android:layout_height="@dimen/login_icon"
                     android:layout_gravity="center_horizontal"
-                    android:layout_marginBottom="@dimen/double_margin"
+                    android:layout_marginBottom="@dimen/edit_text_size"
                     android:contentDescription="@string/app_name"
                     app:srcCompat="@drawable/ic_hahiye" />
 
-                <EditText
-                    android:layout_width="match_parent"
-                    android:layout_height="@dimen/edit_text_size"
-                    android:layout_marginBottom="@dimen/double_margin"
-                    android:background="@drawable/edit_text"
-                    android:hint="@string/e_mail"
-                    android:inputType="textEmailAddress"
-                    android:padding="@dimen/big_margin"
-                    app:addTextChangedListener="@{viewModel.getEmailFromView}" />
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_gravity="center_horizontal"
+                    android:layout_marginBottom="@dimen/horizontal_margin"
+                    android:text="@string/log_in"
+                    android:textAllCaps="true"
+                    android:textColor="@color/colorPrimaryDark"
+                    android:textSize="24sp" />
 
-                <EditText
+                <LinearLayout
                     android:layout_width="match_parent"
-                    android:layout_height="@dimen/edit_text_size"
+                    android:layout_height="wrap_content"
+                    android:layout_marginBottom="@dimen/horizontal_margin"
+                    android:background="@drawable/bg_edit_text"
+                    android:orientation="horizontal">
+
+                    <ImageView
+                        android:layout_width="wrap_content"
+                        android:layout_height="@dimen/edit_text_size"
+                        android:layout_gravity="center_vertical"
+                        android:contentDescription="@string/app_name"
+                        android:padding="@dimen/big_margin"
+                        app:srcCompat="@drawable/ic_people" />
+
+                    <EditText
+                        android:layout_width="match_parent"
+                        android:layout_height="match_parent"
+                        android:background="@null"
+                        android:gravity="center_vertical"
+                        android:hint="@string/e_mail"
+                        android:inputType="textEmailAddress"
+                        android:padding="@dimen/big_margin"
+                        android:textColor="@color/colorPrimaryDark"
+                        android:textColorHint="@color/colorView"
+                        android:textCursorDrawable="@null"
+                        app:addTextChangedListener="@{viewModel.getEmailFromView}" />
+                </LinearLayout>
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
                     android:layout_marginBottom="?android:attr/actionBarSize"
-                    android:background="@drawable/edit_text"
-                    android:hint="@string/password"
-                    android:inputType="textPassword"
-                    android:padding="@dimen/big_margin"
-                    app:addTextChangedListener="@{viewModel.getPasswordFromView}" />
+                    android:background="@drawable/bg_edit_text"
+                    android:orientation="horizontal">
+
+                    <ImageView
+                        android:layout_width="wrap_content"
+                        android:layout_height="@dimen/edit_text_size"
+                        android:layout_gravity="center_vertical"
+                        android:contentDescription="@string/app_name"
+                        android:padding="@dimen/big_margin"
+                        app:srcCompat="@drawable/ic_password" />
+
+                    <EditText
+                        android:id="@+id/s_password"
+                        android:layout_width="match_parent"
+                        android:layout_height="@dimen/edit_text_size"
+                        android:background="@null"
+                        android:gravity="center_vertical"
+                        android:hint="@string/password"
+                        android:inputType="textPassword"
+                        android:padding="@dimen/big_margin"
+                        android:textColor="@color/colorPrimaryDark"
+                        android:textColorHint="@color/colorView"
+                        android:textCursorDrawable="@null"
+                        app:addTextChangedListener="@{viewModel.getPasswordFromView}" />
+                </LinearLayout>
+
             </LinearLayout>
         </android.support.v7.widget.CardView>
 
@@ -65,12 +119,22 @@
             android:layout_width="80dp"
             android:layout_height="80dp"
             android:onClick="@{viewModel::performLogin}"
-            android:contentDescription="@string/app_name"
             app:layout_constraintBottom_toBottomOf="@+id/cardView2"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toBottomOf="@+id/cardView2"
             app:srcCompat="@drawable/ic_ok" />
+
+        <TextView
+            android:id="@+id/textView"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginBottom="@dimen/double_margin"
+            android:text="@string/forget_password"
+            android:textColor="@color/colorWhite"
+            app:layout_constraintBottom_toTopOf="@+id/button"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent" />
 
         <Button
             android:id="@+id/button"
@@ -78,9 +142,9 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_margin="@dimen/big_margin"
-            android:background="@color/colorAccent"
+            android:background="@drawable/bg_button"
             android:text="@string/sign_up"
-            android:textColor="@color/white_color"
+            android:textColor="@color/colorWhite"
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent" />

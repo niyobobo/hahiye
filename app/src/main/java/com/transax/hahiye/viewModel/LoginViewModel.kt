@@ -1,15 +1,16 @@
-package com.transax.hahiye.viewmodel
+package com.transax.hahiye.viewModel
 
-import android.app.Activity
+import android.arch.lifecycle.AndroidViewModel
 import android.arch.lifecycle.ViewModel
+import android.content.Context
 import android.text.Editable
 import android.text.TextWatcher
 import android.view.View
-import android.widget.Toast
 import com.transax.hahiye.model.UserModel
-import com.transax.hahiye.view.callback.LoginResultCallback
+import com.transax.hahiye.callback.ResultCallback
 
-class LoginViewModel(private val callback: LoginResultCallback) : ViewModel() {
+class LoginViewModel(private val callback: ResultCallback) : ViewModel() {
+
 
     val userModel: UserModel = UserModel()
 
@@ -52,4 +53,5 @@ class LoginViewModel(private val callback: LoginResultCallback) : ViewModel() {
         else
             callback.onError("Provide correct information")
     }
+
 }

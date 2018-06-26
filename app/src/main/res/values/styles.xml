@@ -13,7 +13,11 @@
 
     <style name="SplashScreen" parent="AppTheme.NoActionBar">
         <item name="android:windowFullscreen">true</item>
-        <item name="android:windowBackground">@drawable/splash</item>
+        <item name="android:windowBackground">@drawable/bg_splash</item>
+    </style>
+
+    <style name="LoginTheme" parent="AppTheme.NoActionBar">
+        <item name="android:windowFullscreen">true</item>
     </style>
 
 </resources>

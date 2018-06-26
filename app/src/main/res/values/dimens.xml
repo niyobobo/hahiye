@@ -3,5 +3,7 @@
     <dimen name="edit_text_size">45sp</dimen>
     <dimen name="big_margin">10dp</dimen>
     <dimen name="double_margin">20dp</dimen>
-    <dimen name="login_icon">200dp</dimen>
+    <dimen name="login_icon">150dp</dimen>
+    <dimen name="horizontal_margin">16dp</dimen>
+    <dimen name="small_margin">5dp</dimen>
 </resources>

@@ -4,7 +4,7 @@ import android.text.TextUtils
 import android.util.Patterns
 import java.util.*
 
-class UserModel : Observable() {
+class UserModel {
     var email: String = ""
     var password: String = ""
 
