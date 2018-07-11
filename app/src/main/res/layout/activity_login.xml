@@ -3,7 +3,6 @@
     xmlns:app="http://schemas.android.com/apk/res-auto">
 
     <data>
-
         <variable
             name="viewModel"
             type="com.transax.hahiye.viewModel.LoginViewModel" />
@@ -115,7 +114,7 @@
 
         <android.support.design.widget.FloatingActionButton
             android:id="@+id/imageButton"
-            style="?attr/borderlessButtonStyle"
+            style="?android:attr/borderlessButtonStyle"
             android:layout_width="80dp"
             android:layout_height="80dp"
             android:onClick="@{viewModel::performLogin}"
