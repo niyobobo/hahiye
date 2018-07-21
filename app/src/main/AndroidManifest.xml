@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
-    package="com.transax.hahiye">
+    package="rw.transax.hahiye">
 
     <application
         android:allowBackup="true"
@@ -10,7 +10,7 @@
         android:supportsRtl="true"
         android:theme="@style/AppTheme">
         <activity
-            android:name=".ui.SplashScreenActivity"
+            android:name="rw.transax.hahiye.ui.SplashScreenActivity"
             android:theme="@style/SplashScreen">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
@@ -19,10 +19,10 @@
             </intent-filter>
         </activity>
         <activity
-            android:name=".ui.LoginActivity"
+            android:name="rw.transax.hahiye.ui.LoginActivity"
             android:theme="@style/LoginTheme" />
 
-        <activity android:name=".ui.SignUpActivity" />
+        <activity android:name="rw.transax.hahiye.ui.SignUpActivity" />
     </application>
 
 </manifest>

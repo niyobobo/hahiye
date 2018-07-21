@@ -1,4 +1,4 @@
-package com.transax.hahiye.callback;
+package rw.transax.hahiye.callback;
 
 public interface ResultCallback {
 

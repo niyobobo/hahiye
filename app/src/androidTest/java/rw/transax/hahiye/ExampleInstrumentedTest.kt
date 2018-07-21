@@ -1,4 +1,4 @@
-package com.transax.hahiye
+package rw.transax.hahiye
 
 import android.support.test.InstrumentationRegistry
 import android.support.test.runner.AndroidJUnit4

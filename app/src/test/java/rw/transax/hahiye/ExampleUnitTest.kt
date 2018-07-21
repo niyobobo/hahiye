@@ -1,4 +1,4 @@
-package com.transax.hahiye
+package rw.transax.hahiye
 
 import org.junit.Test
 

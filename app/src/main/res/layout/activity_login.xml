@@ -3,9 +3,10 @@
     xmlns:app="http://schemas.android.com/apk/res-auto">
 
     <data>
+
         <variable
             name="viewModel"
-            type="com.transax.hahiye.viewModel.LoginViewModel" />
+            type="rw.transax.hahiye.viewModel.LoginViewModel" />
     </data>
 
     <android.support.constraint.ConstraintLayout
@@ -14,6 +15,7 @@
         android:background="@drawable/bg_login"
         android:focusable="true"
         android:focusableInTouchMode="true">
+
 
         <android.support.v7.widget.CardView
             android:id="@+id/cardView2"
@@ -135,12 +137,12 @@
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent" />
 
+
         <Button
             android:id="@+id/button"
             style="?android:attr/borderlessButtonStyle"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:layout_margin="@dimen/big_margin"
             android:background="@drawable/bg_button"
             android:text="@string/sign_up"
             android:textColor="@color/colorWhite"

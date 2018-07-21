@@ -1,9 +1,9 @@
-package com.transax.hahiye.ui;
+package rw.transax.hahiye.ui;
 
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 
-import com.transax.hahiye.R;
+import rw.transax.hahiye.R;
 
 public class SignUpActivity extends AppCompatActivity {
 

@@ -1,4 +1,4 @@
-package com.transax.hahiye.ui;
+package rw.transax.hahiye.ui;
 
 import android.arch.lifecycle.ViewModelProviders;
 import android.databinding.DataBindingUtil;
@@ -7,11 +7,11 @@ import android.support.annotation.Nullable;
 import android.support.v7.app.AppCompatActivity;
 import android.widget.Toast;
 
-import com.transax.hahiye.R;
-import com.transax.hahiye.callback.ResultCallback;
-import com.transax.hahiye.databinding.ActivityLoginBinding;
-import com.transax.hahiye.viewModel.LoginViewFactory;
-import com.transax.hahiye.viewModel.LoginViewModel;
+import rw.transax.hahiye.R;
+import rw.transax.hahiye.callback.ResultCallback;
+import rw.transax.hahiye.databinding.ActivityLoginBinding;
+import rw.transax.hahiye.viewModel.LoginViewModelFactory;
+import rw.transax.hahiye.viewModel.LoginViewModel;
 
 public class LoginActivity extends AppCompatActivity implements ResultCallback {
 
@@ -20,7 +20,7 @@ public class LoginActivity extends AppCompatActivity implements ResultCallback {
         super.onCreate(savedInstanceState);
         ActivityLoginBinding dataBinding = DataBindingUtil.setContentView(this, R.layout.activity_login);
         dataBinding.setViewModel(ViewModelProviders
-                .of(this, new LoginViewFactory(this))
+                .of(this, new LoginViewModelFactory(this))
                 .get(LoginViewModel.class));
         dataBinding.executePendingBindings();
     }
