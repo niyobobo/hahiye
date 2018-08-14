@@ -10,7 +10,6 @@ import android.widget.Toast;
 import rw.transax.hahiye.R;
 import rw.transax.hahiye.callback.ResultCallback;
 import rw.transax.hahiye.databinding.ActivityLoginBinding;
-import rw.transax.hahiye.viewModel.LoginViewModelFactory;
 import rw.transax.hahiye.viewModel.LoginViewModel;
 
 public class LoginActivity extends AppCompatActivity implements ResultCallback {
@@ -19,9 +18,7 @@ public class LoginActivity extends AppCompatActivity implements ResultCallback {
     protected void onCreate(@Nullable Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         ActivityLoginBinding dataBinding = DataBindingUtil.setContentView(this, R.layout.activity_login);
-        dataBinding.setViewModel(ViewModelProviders
-                .of(this, new LoginViewModelFactory(this))
-                .get(LoginViewModel.class));
+        dataBinding.setViewModel(ViewModelProviders.of(this).get(LoginViewModel.class));
         dataBinding.executePendingBindings();
     }
 

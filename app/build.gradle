@@ -5,17 +5,18 @@ def versionMinor = 0
 def versionPatch = 1
 
 android {
-    compileSdkVersion 27
+    compileSdkVersion 28
 
     defaultConfig {
         applicationId "rw.transax.hahiye"
         minSdkVersion 16
-        targetSdkVersion 27
+        targetSdkVersion 28
         versionCode versionMajor * 1000 + versionMinor * 100 + versionPatch
         versionName "${versionMajor}.${versionMinor}.${versionPatch}"
         vectorDrawables.useSupportLibrary = true
         testInstrumentationRunner "android.support.test.runner.AndroidJUnitRunner"
     }
+
     buildTypes {
         release {
             minifyEnabled false
@@ -32,7 +33,7 @@ android {
         enabled = true
     }
 
-    compileOptions{
+    compileOptions {
         targetCompatibility 1.8
         sourceCompatibility 1.8
     }
@@ -49,6 +50,7 @@ dependencies {
 
     implementation 'android.arch.lifecycle:extensions:1.1.1'
     annotationProcessor 'android.arch.lifecycle:compiler:1.1.1'
+    implementation 'com.github.doctoror.particlesdrawable:library:1.0.9'
 
     testImplementation 'junit:junit:4.12'
     androidTestImplementation 'com.android.support.test:runner:1.0.2'

@@ -6,4 +6,16 @@
     <color name="colorButtonPressed">#FF4081</color>
     <color name="colorWhite">#ffffff</color>
     <color name="colorView">#99a3a0a0</color>
+    <color name="colorParticles">#33ffffff</color>
+
+    <array name="dots_active">
+        <item>@color/colorButtonPressed</item>
+        <item>@color/colorButtonPressed</item>
+        <item>@color/colorButtonPressed</item>
+    </array>
+    <array name="dots_inactive">
+        <item>@color/colorWhite</item>
+        <item>@color/colorWhite</item>
+        <item>@color/colorWhite</item>
+    </array>
 </resources>

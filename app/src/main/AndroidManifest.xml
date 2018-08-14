@@ -10,7 +10,7 @@
         android:supportsRtl="true"
         android:theme="@style/AppTheme">
         <activity
-            android:name="rw.transax.hahiye.ui.SplashScreenActivity"
+            android:name=".ui.SplashScreenActivity"
             android:theme="@style/SplashScreen">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
@@ -19,10 +19,12 @@
             </intent-filter>
         </activity>
         <activity
-            android:name="rw.transax.hahiye.ui.LoginActivity"
+            android:name=".ui.LoginActivity"
             android:theme="@style/LoginTheme" />
-
-        <activity android:name="rw.transax.hahiye.ui.SignUpActivity" />
+        <activity android:name=".ui.SignUpActivity" />
+        <activity
+            android:name=".ui.AppIntroActivity"
+            android:theme="@style/AppTheme.NoActionBar" />
     </application>
 
 </manifest>

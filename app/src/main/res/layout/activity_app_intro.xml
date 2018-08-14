@@ -1,0 +1,83 @@
+<?xml version="1.0" encoding="utf-8"?>
+<android.support.constraint.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@drawable/bg_login"
+    tools:context=".ui.AppIntroActivity">
+
+    <com.doctoror.particlesdrawable.ParticlesView
+        android:id="@+id/particles"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        app:dotColor="@color/colorParticles"
+        app:frameDelayMillis="10"
+        app:layout_constraintEnd_toStartOf="parent"
+        app:layout_constraintStart_toEndOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:lineColor="@color/colorParticles"
+        app:lineDistance="86dp"
+        app:lineThickness="1dp"
+        app:maxDotRadius="3dp"
+        app:minDotRadius="1dp"
+        app:numDots="60"
+        app:stepMultiplier="1" />
+
+    <rw.transax.hahiye.utils.WrapContentViewPager
+        android:id="@+id/viewPager_slider"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
+
+    <LinearLayout
+        android:id="@+id/linear_dots"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:gravity="center"
+        android:orientation="horizontal"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/viewPager_slider" />
+
+    <Button
+        android:id="@+id/btn_signIn"
+        style="?android:attr/borderlessButtonStyle"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginBottom="@dimen/horizontal_margin"
+        android:layout_marginEnd="@dimen/edit_text_size"
+        android:layout_marginLeft="@dimen/edit_text_size"
+        android:layout_marginRight="@dimen/edit_text_size"
+        android:layout_marginStart="@dimen/edit_text_size"
+        android:background="@drawable/drawable_round_btn"
+        android:text="@string/log_in"
+        android:textAllCaps="false"
+        android:textColor="@color/colorWhite"
+        android:textSize="@dimen/text_size_extra"
+        app:layout_constraintBottom_toTopOf="@+id/btn_signUp"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent" />
+
+    <Button
+        android:id="@+id/btn_signUp"
+        style="?android:attr/borderlessButtonStyle"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginBottom="32dp"
+        android:layout_marginEnd="@dimen/edit_text_size"
+        android:layout_marginLeft="@dimen/edit_text_size"
+        android:layout_marginRight="@dimen/edit_text_size"
+        android:layout_marginStart="@dimen/edit_text_size"
+        android:background="@drawable/drawable_round_btn"
+        android:text="@string/sign_up"
+        android:textAllCaps="false"
+        android:textColor="@color/colorWhite"
+        android:textSize="@dimen/text_size_extra"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent" />
+
+</android.support.constraint.ConstraintLayout>
