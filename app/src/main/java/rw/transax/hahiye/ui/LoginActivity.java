@@ -18,8 +18,8 @@ public class LoginActivity extends AppCompatActivity implements ResultCallback {
     protected void onCreate(@Nullable Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         ActivityLoginBinding dataBinding = DataBindingUtil.setContentView(this, R.layout.activity_login);
-        dataBinding.setViewModel(ViewModelProviders.of(this).get(LoginViewModel.class));
-        dataBinding.executePendingBindings();
+        //dataBinding.setViewModel(ViewModelProviders.of(this).get(LoginViewModel.class));
+        //dataBinding.executePendingBindings();
     }
 
     @Override

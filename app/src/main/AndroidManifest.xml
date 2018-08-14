@@ -20,8 +20,10 @@
         </activity>
         <activity
             android:name=".ui.LoginActivity"
-            android:theme="@style/LoginTheme" />
-        <activity android:name=".ui.SignUpActivity" />
+            android:theme="@style/AppTheme.NoActionBar" />
+        <activity
+            android:name=".ui.SignUpActivity"
+            android:parentActivityName=".ui.AppIntroActivity" />
         <activity
             android:name=".ui.AppIntroActivity"
             android:theme="@style/AppTheme.NoActionBar" />

@@ -1,12 +1,16 @@
 package rw.transax.hahiye.model;
 
+import android.arch.persistence.room.Entity;
 import android.text.TextUtils;
 import android.util.Patterns;
 
+@Entity
 public class UserModel {
-
+    private String id;
     private String email;
     private String password;
+    private String user_profile;
+
 
     private String getEmail() {
         return email;
