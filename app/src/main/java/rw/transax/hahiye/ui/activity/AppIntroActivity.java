@@ -1,4 +1,4 @@
-package rw.transax.hahiye.ui;
+package rw.transax.hahiye.ui.activity;
 
 import android.content.Context;
 import android.content.Intent;
@@ -97,7 +97,7 @@ public class AppIntroActivity extends AppCompatActivity implements
                 startActivity(new Intent(this, LoginActivity.class));
                 break;
             case R.id.btn_signUp:
-                startActivity(new Intent(this, SignUpActivity.class));
+                startActivity(new Intent(this, InterestActivity.class));
                 break;
             default:
                 break;

@@ -6,9 +6,9 @@ import android.arch.persistence.room.Query;
 import rw.transax.hahiye.model.UserModel;
 
 @Dao
-public interface UserModelDao extends GenericDao {
+public interface UserDao extends GenericDao<UserModel> {
 
-    @Query("SELECT * FROM UserModel WHERE id= :user_id")
+    @Query("SELECT * FROM UserModel WHERE uid= :user_id")
     UserModel getUserInfo(String user_id);
 
 }

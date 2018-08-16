@@ -1,18 +1,46 @@
 package rw.transax.hahiye.model;
 
 import android.arch.persistence.room.Entity;
-import android.text.TextUtils;
-import android.util.Patterns;
+import android.arch.persistence.room.Ignore;
+import android.arch.persistence.room.PrimaryKey;
 
 @Entity
 public class UserModel {
-    private String id;
+    @PrimaryKey(autoGenerate = true)
+    private int id;
+    private String uid;
     private String email;
     private String password;
     private String user_profile;
 
+    public UserModel() {
+    }
 
-    private String getEmail() {
+    @Ignore
+    public UserModel(String uid, String email, String password, String user_profile) {
+        this.uid = uid;
+        this.email = email;
+        this.password = password;
+        this.user_profile = user_profile;
+    }
+
+    public int getId() {
+        return id;
+    }
+
+    public void setId(int id) {
+        this.id = id;
+    }
+
+    public String getUid() {
+        return uid;
+    }
+
+    public void setUid(String uid) {
+        this.uid = uid;
+    }
+
+    public String getEmail() {
         return email;
     }
 
@@ -28,18 +56,11 @@ public class UserModel {
         this.password = password;
     }
 
-    public int isValidData() {
-        if (TextUtils.isEmpty(getEmail()) && TextUtils.isEmpty(getPassword()))
-            return 0;
-        else if (TextUtils.isEmpty(getEmail()))
-            return 1;
-        else if (TextUtils.isEmpty(getPassword()))
-            return 2;
-        else if (!Patterns.EMAIL_ADDRESS.matcher(getEmail()).matches())
-            return 3;
-        else if (getPassword().length() < 6)
-            return 4;
-        else
-            return -1;
+    public String getUser_profile() {
+        return user_profile;
+    }
+
+    public void setUser_profile(String user_profile) {
+        this.user_profile = user_profile;
     }
 }

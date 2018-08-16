@@ -1,78 +1,65 @@
 package rw.transax.hahiye.viewModel;
 
-import android.arch.lifecycle.ViewModel;
-import android.text.Editable;
-import android.text.TextWatcher;
-import android.view.View;
+import android.app.Application;
+import android.arch.lifecycle.AndroidViewModel;
+import android.databinding.ObservableField;
+import android.support.annotation.NonNull;
+import android.text.TextUtils;
+import android.util.Patterns;
 
-import rw.transax.hahiye.callback.ResultCallback;
+import java.util.Objects;
+import java.util.concurrent.ExecutorService;
+import java.util.concurrent.Executors;
+
+import retrofit2.Call;
+import retrofit2.Callback;
+import retrofit2.Response;
+import rw.transax.hahiye.data.local.dao.UserDao;
+import rw.transax.hahiye.data.local.database.AppDatabase;
+import rw.transax.hahiye.data.remote.ApiInterface;
 import rw.transax.hahiye.model.UserModel;
 
-public class LoginViewModel extends ViewModel {
+public class LoginViewModel extends AndroidViewModel {
 
-    private ResultCallback resultCallback;
-    private UserModel userModel = new UserModel();
+    private UserDao userDao;
+    private ExecutorService executorService;
+    public final ObservableField<String> username = new ObservableField<>();
+    public final ObservableField<String> password = new ObservableField<>();
 
-    LoginViewModel(ResultCallback resultCallback) {
-        this.resultCallback = resultCallback;
+
+    public LoginViewModel(@NonNull Application application) {
+        super(application);
+        userDao = AppDatabase.getDbInstance(application).userDao();
+        executorService = Executors.newSingleThreadExecutor();
     }
 
-    public TextWatcher getEmailFromView() {
-        return new TextWatcher() {
+    public void userLogin() {
+        Call<UserModel> networkCall = ApiInterface.Factory.create().getLoginInfo(username.get(), password.get());
+        networkCall.enqueue(new Callback<UserModel>() {
             @Override
-            public void beforeTextChanged(CharSequence s, int start, int count, int after) {
+            public void onResponse(@NonNull Call<UserModel> call, @NonNull Response<UserModel> response) {
+                executorService.execute(() -> userDao.insert(response.body()));
             }
 
             @Override
-            public void onTextChanged(CharSequence s, int start, int before, int count) {
-
+            public void onFailure(@NonNull Call<UserModel> call, @NonNull Throwable t) {
+                t.printStackTrace();
             }
-
-            @Override
-            public void afterTextChanged(Editable s) {
-                userModel.setEmail(s.toString());
-            }
-        };
+        });
     }
 
-    public TextWatcher getPasswordFromView() {
-        return new TextWatcher() {
-            @Override
-            public void beforeTextChanged(CharSequence s, int start, int count, int after) {
-            }
-
-            @Override
-            public void onTextChanged(CharSequence s, int start, int before, int count) {
-
-            }
-
-            @Override
-            public void afterTextChanged(Editable s) {
-                userModel.setPassword(s.toString());
-            }
-        };
-    }
-
-    public void performLogin(View view) {
-
-        switch (userModel.isValidData()) {
-            case 0:
-                resultCallback.onError("Provide both email and password");
-                break;
-            case 1:
-                resultCallback.onError("Provide your email");
-                break;
-            case 2:
-                resultCallback.onError("Provide your password");
-                break;
-            case 3:
-                resultCallback.onError("You entered an incorrect email");
-                break;
-            case 4:
-                resultCallback.onError("Password should be 6 characters long");
-                break;
-            case -1:
-                resultCallback.onSuccess("Success");
-        }
+    public int validatingData() {
+        if (TextUtils.isEmpty(username.get()) && TextUtils.isEmpty(password.get()))
+            return 0;
+        else if (TextUtils.isEmpty(username.get()))
+            return 1;
+        else if (TextUtils.isEmpty(password.get()))
+            return 2;
+        else if (!Patterns.EMAIL_ADDRESS.matcher(Objects.requireNonNull(username.get())).matches())
+            return 3;
+        else if (Objects.requireNonNull(password.get()).length() < 6)
+            return 4;
+        else
+            return -1;
     }
 }

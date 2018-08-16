@@ -5,6 +5,10 @@
     <data>
 
         <variable
+            name="presenter"
+            type="rw.transax.hahiye.callback.Presenter"/>
+
+        <variable
             name="viewModel"
             type="rw.transax.hahiye.viewModel.LoginViewModel" />
     </data>
@@ -123,10 +127,10 @@
                         android:hint="@string/e_mail"
                         android:inputType="textEmailAddress"
                         android:padding="@dimen/big_margin"
+                        android:text="@={viewModel.username}"
                         android:textColor="@color/colorPrimaryDark"
                         android:textColorHint="@color/colorView"
-                        android:textCursorDrawable="@null"
-                        app:addTextChangedListener="@{viewModel.getEmailFromView}" />
+                        android:textCursorDrawable="@null" />
                 </LinearLayout>
 
                 <LinearLayout
@@ -145,7 +149,7 @@
                         app:srcCompat="@drawable/ic_password" />
 
                     <EditText
-                        android:id="@+id/s_password"
+                        android:id="@+id/user_password"
                         android:layout_width="match_parent"
                         android:layout_height="@dimen/edit_text_size"
                         android:background="@null"
@@ -153,10 +157,10 @@
                         android:hint="@string/password"
                         android:inputType="textPassword"
                         android:padding="@dimen/big_margin"
+                        android:text="@={viewModel.password}"
                         android:textColor="@color/colorPrimaryDark"
                         android:textColorHint="@color/colorView"
-                        android:textCursorDrawable="@null"
-                        app:addTextChangedListener="@{viewModel.getPasswordFromView}" />
+                        android:textCursorDrawable="@null" />
                 </LinearLayout>
 
             </LinearLayout>
@@ -167,7 +171,7 @@
             style="?android:attr/borderlessButtonStyle"
             android:layout_width="80dp"
             android:layout_height="80dp"
-            android:onClick="@{viewModel::performLogin}"
+            android:onClick="@{(v)->presenter.performLogin()}"
             app:layout_constraintBottom_toBottomOf="@+id/cardView2"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"

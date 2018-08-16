@@ -13,9 +13,6 @@ public interface ApiInterface {
     Call<UserModel> getLoginInfo(@Query("email") String email, @Query("password") String password);
 
 
-
-
-
     /**
      * Factory class for convenient creation of the Api Service interface
      * and initializing retrofit instance.

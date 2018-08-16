@@ -5,7 +5,7 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:background="@drawable/bg_login"
-    tools:context=".ui.AppIntroActivity">
+    tools:context=".ui.activity.AppIntroActivity">
 
     <com.doctoror.particlesdrawable.ParticlesView
         android:id="@+id/particles"
@@ -52,7 +52,7 @@
         android:layout_marginLeft="@dimen/edit_text_size"
         android:layout_marginRight="@dimen/edit_text_size"
         android:layout_marginStart="@dimen/edit_text_size"
-        android:background="@drawable/drawable_round_btn"
+        android:background="@drawable/bg_color_button"
         android:text="@string/log_in"
         android:textAllCaps="false"
         android:textColor="@color/colorWhite"
@@ -71,10 +71,10 @@
         android:layout_marginLeft="@dimen/edit_text_size"
         android:layout_marginRight="@dimen/edit_text_size"
         android:layout_marginStart="@dimen/edit_text_size"
-        android:background="@drawable/drawable_round_btn"
+        android:background="@drawable/bg_white_button"
         android:text="@string/sign_up"
         android:textAllCaps="false"
-        android:textColor="@color/colorWhite"
+        android:textColor="@color/colorAccent"
         android:textSize="@dimen/text_size_extra"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"

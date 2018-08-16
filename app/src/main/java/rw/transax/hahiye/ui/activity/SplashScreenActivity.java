@@ -1,4 +1,4 @@
-package rw.transax.hahiye.ui;
+package rw.transax.hahiye.ui.activity;
 
 import android.content.Intent;
 import android.os.Bundle;
