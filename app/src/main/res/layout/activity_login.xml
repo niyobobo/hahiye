@@ -6,7 +6,7 @@
 
         <variable
             name="presenter"
-            type="rw.transax.hahiye.callback.Presenter"/>
+            type="rw.transax.hahiye.callback.Presenter" />
 
         <variable
             name="viewModel"
@@ -38,6 +38,7 @@
                     android:layout_height="wrap_content"
                     android:layout_gravity="center"
                     android:layout_weight="0.10"
+                    android:onClick="@{(v)->presenter.backPressed()}"
                     android:contentDescription="@string/app_name"
                     app:srcCompat="@drawable/ic_back" />
 
@@ -171,6 +172,7 @@
             style="?android:attr/borderlessButtonStyle"
             android:layout_width="80dp"
             android:layout_height="80dp"
+            app:fabSize="normal"
             android:onClick="@{(v)->presenter.performLogin()}"
             app:layout_constraintBottom_toBottomOf="@+id/cardView2"
             app:layout_constraintEnd_toEndOf="parent"

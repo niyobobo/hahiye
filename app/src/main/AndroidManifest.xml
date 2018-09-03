@@ -2,6 +2,8 @@
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
     package="rw.transax.hahiye">
 
+    <uses-permission android:name="android.permission.INTERNET" />
+
     <application
         android:allowBackup="true"
         android:icon="@mipmap/ic_launcher"
@@ -10,7 +12,7 @@
         android:supportsRtl="true"
         android:theme="@style/AppTheme">
         <activity
-            android:name=".ui.activity.SplashScreenActivity"
+            android:name=".view.activity.SplashScreenActivity"
             android:theme="@style/SplashScreen">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
@@ -19,17 +21,17 @@
             </intent-filter>
         </activity>
         <activity
-            android:name=".ui.activity.LoginActivity"
+            android:name=".view.activity.LoginActivity"
             android:theme="@style/AppTheme.NoActionBar" />
         <activity
-            android:name=".ui.activity.SignUpActivity"
-            android:parentActivityName=".ui.activity.AppIntroActivity" />
+            android:name=".view.activity.SignUpActivity"
+            android:parentActivityName=".view.activity.AppIntroActivity" />
         <activity
-            android:name=".ui.activity.AppIntroActivity"
+            android:name=".view.activity.AppIntroActivity"
             android:theme="@style/AppTheme.NoActionBar" />
         <activity
-            android:name=".ui.activity.InterestActivity"
-            android:parentActivityName=".ui.activity.AppIntroActivity" />
+            android:name=".view.activity.InterestActivity"
+            android:parentActivityName=".view.activity.AppIntroActivity" />
     </application>
 
 </manifest>

@@ -1,4 +1,4 @@
-package rw.transax.hahiye.ui.activity;
+package rw.transax.hahiye.view.activity;
 
 import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;

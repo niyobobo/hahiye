@@ -1,4 +1,4 @@
-package rw.transax.hahiye.ui.activity;
+package rw.transax.hahiye.view.activity;
 
 import android.arch.lifecycle.ViewModelProviders;
 import android.databinding.DataBindingUtil;
@@ -48,5 +48,10 @@ public class LoginActivity extends AppCompatActivity implements Presenter {
             case -1:
                 loginViewModel.userLogin();
         }
+    }
+
+    @Override
+    public void backPressed() {
+        super.onBackPressed();
     }
 }

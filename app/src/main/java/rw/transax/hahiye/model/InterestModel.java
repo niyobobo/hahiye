@@ -3,6 +3,8 @@ package rw.transax.hahiye.model;
 import android.arch.persistence.room.Entity;
 import android.arch.persistence.room.Ignore;
 import android.arch.persistence.room.PrimaryKey;
+import android.support.annotation.NonNull;
+import android.support.v7.util.DiffUtil;
 
 @Entity
 public class InterestModel {
@@ -13,7 +15,15 @@ public class InterestModel {
     private String name;
     private String icon;
 
+    @Ignore
     public InterestModel() {
+    }
+
+    public InterestModel(int id, String uid, String name, String icon) {
+        this.id = id;
+        this.uid = uid;
+        this.name = name;
+        this.icon = icon;
     }
 
     @Ignore
@@ -54,4 +64,5 @@ public class InterestModel {
     public void setIcon(String icon) {
         this.icon = icon;
     }
+
 }

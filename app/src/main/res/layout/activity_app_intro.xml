@@ -5,7 +5,7 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:background="@drawable/bg_login"
-    tools:context=".ui.activity.AppIntroActivity">
+    tools:context=".view.activity.AppIntroActivity">
 
     <com.doctoror.particlesdrawable.ParticlesView
         android:id="@+id/particles"
@@ -42,42 +42,46 @@
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/viewPager_slider" />
 
-    <Button
+    <android.support.design.button.MaterialButton
         android:id="@+id/btn_signIn"
         style="?android:attr/borderlessButtonStyle"
         android:layout_width="match_parent"
-        android:layout_height="wrap_content"
+        android:layout_height="@dimen/button_size"
         android:layout_marginBottom="@dimen/horizontal_margin"
         android:layout_marginEnd="@dimen/edit_text_size"
         android:layout_marginLeft="@dimen/edit_text_size"
         android:layout_marginRight="@dimen/edit_text_size"
         android:layout_marginStart="@dimen/edit_text_size"
-        android:background="@drawable/bg_color_button"
         android:text="@string/log_in"
         android:textAllCaps="false"
         android:textColor="@color/colorWhite"
         android:textSize="@dimen/text_size_extra"
+        app:backgroundTint="@color/colorAccent"
+        app:cornerRadius="@dimen/corner_button"
         app:layout_constraintBottom_toTopOf="@+id/btn_signUp"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent" />
+        app:layout_constraintStart_toStartOf="parent"
+        app:rippleColor="@color/colorWhite" />
 
-    <Button
+    <android.support.design.button.MaterialButton
         android:id="@+id/btn_signUp"
         style="?android:attr/borderlessButtonStyle"
         android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:layout_marginBottom="32dp"
+        android:layout_height="@dimen/button_size"
+        android:layout_marginBottom="@dimen/corner_button"
         android:layout_marginEnd="@dimen/edit_text_size"
         android:layout_marginLeft="@dimen/edit_text_size"
         android:layout_marginRight="@dimen/edit_text_size"
         android:layout_marginStart="@dimen/edit_text_size"
-        android:background="@drawable/bg_white_button"
         android:text="@string/sign_up"
         android:textAllCaps="false"
         android:textColor="@color/colorAccent"
         android:textSize="@dimen/text_size_extra"
+        app:backgroundTint="@color/colorWhite"
+        app:cornerRadius="@dimen/corner_button"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent" />
+        app:layout_constraintStart_toStartOf="parent"
+        app:rippleColor="@color/colorAccent" />
 
 </android.support.constraint.ConstraintLayout>

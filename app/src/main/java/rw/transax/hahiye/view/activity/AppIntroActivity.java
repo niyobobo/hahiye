@@ -1,4 +1,4 @@
-package rw.transax.hahiye.ui.activity;
+package rw.transax.hahiye.view.activity;
 
 import android.content.Context;
 import android.content.Intent;
@@ -52,7 +52,6 @@ public class AppIntroActivity extends AppCompatActivity implements
 
         addLayoutDots(0);
     }
-
 
     private void addLayoutDots(int page) {
         TextView[] dots = new TextView[viewLayouts.length];

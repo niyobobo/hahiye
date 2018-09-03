@@ -20,11 +20,8 @@ import rw.transax.hahiye.model.UserModel;
 @Database(entities = {UserModel.class, InterestModel.class}, version = 1)
 public abstract class AppDatabase extends RoomDatabase {
 
-    public abstract UserDao userDao();
-
-    public abstract InterestDao interestDao();
-
     private static AppDatabase INSTANCE;
+    private static final String DATABASE_NAME = "hahiye_db";
     private static final Object object = new Object();
 
     private static List<InterestModel> INTEREST = Arrays.asList(
@@ -40,8 +37,7 @@ public abstract class AppDatabase extends RoomDatabase {
             if (INSTANCE == null) {
                 INSTANCE = Room.databaseBuilder(
                         context.getApplicationContext(),
-                        AppDatabase.class,
-                        "hahiye_db")
+                        AppDatabase.class, DATABASE_NAME)
                         .allowMainThreadQueries()
                         .addCallback(new Callback() {
                             @Override
@@ -55,4 +51,8 @@ public abstract class AppDatabase extends RoomDatabase {
         }
         return INSTANCE;
     }
+
+    public abstract UserDao userDao();
+
+    public abstract InterestDao interestDao();
 }
