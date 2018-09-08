@@ -15,8 +15,6 @@ import android.widget.TextView;
 
 import com.bumptech.glide.Glide;
 
-import java.util.List;
-
 import rw.transax.hahiye.R;
 import rw.transax.hahiye.model.InterestModel;
 
@@ -31,7 +29,7 @@ public class InterestAdapter extends ListAdapter<InterestModel, InterestAdapter.
 
     /**
      * @param context          Context of the parent activity
-     * @param interestSelected button selected callback that will notify activity through this interface
+     * @param interestSelected button selected callback that will notify activity through interface
      *                         whether interest selected or deselected.
      */
 
@@ -44,9 +42,11 @@ public class InterestAdapter extends ListAdapter<InterestModel, InterestAdapter.
     @NonNull
     @Override
     public ViewHolder onCreateViewHolder(@NonNull ViewGroup parent, int viewType) {
-        View view = LayoutInflater.from(parent.getContext())
-                .inflate(R.layout.item_interest_layout, parent, false);
-        return new ViewHolder(view);
+
+        LayoutInflater inflater = LayoutInflater.from(parent.getContext());
+        View selected = inflater.inflate(R.layout.item_interest_selected, parent, false);
+        View notSelected = inflater.inflate(R.layout.item_interest_layout, parent, false);
+        return viewType == 1 ? new ViewHolder(selected) : new ViewHolder(notSelected);
     }
 
     @Override
@@ -55,9 +55,13 @@ public class InterestAdapter extends ListAdapter<InterestModel, InterestAdapter.
     }
 
     @Override
-    public void submitList(@Nullable List<InterestModel> list) {
-        super.submitList(list);
-        notifyDataSetChanged();
+    public int getItemViewType(int position) {
+        return getItem(position).getIsFollowed() == 1 ? 1 : 0;
+    }
+
+    @Override
+    public long getItemId(int position) {
+        return getItem(position).getId();
     }
 
     class ViewHolder extends RecyclerView.ViewHolder {
@@ -85,7 +89,6 @@ public class InterestAdapter extends ListAdapter<InterestModel, InterestAdapter.
             });
         }
     }
-
 
     /**
      * DiffUtil object that calculate difference between data passed to adapter using submitList()

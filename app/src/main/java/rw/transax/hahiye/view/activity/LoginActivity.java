@@ -5,6 +5,7 @@ import android.databinding.DataBindingUtil;
 import android.os.Bundle;
 import android.support.annotation.Nullable;
 import android.support.v7.app.AppCompatActivity;
+import android.widget.Toast;
 
 import rw.transax.hahiye.R;
 import rw.transax.hahiye.callback.Presenter;
@@ -53,5 +54,13 @@ public class LoginActivity extends AppCompatActivity implements Presenter {
     @Override
     public void backPressed() {
         super.onBackPressed();
+    }
+
+    @Override
+    public void forgetPassword() {
+        /*
+         * Start activity to request new password
+         */
+        Toast.makeText(this, "Forget password", Toast.LENGTH_SHORT).show();
     }
 }

@@ -96,7 +96,7 @@ public class AppIntroActivity extends AppCompatActivity implements
                 startActivity(new Intent(this, LoginActivity.class));
                 break;
             case R.id.btn_signUp:
-                startActivity(new Intent(this, InterestActivity.class));
+                startActivity(new Intent(this, SignUpActivity.class));
                 break;
             default:
                 break;

@@ -6,4 +6,10 @@
     <string name="log_in">Log In</string>
     <string name="forget_password">Forget password</string>
     <string name="follow">Follow</string>
+    <string name="following">Following</string>
+    <string name="interest">Interest</string>
+    <string name="last_name">Last name</string>
+    <string name="first_name">First name</string>
+    <string name="create_account">Create account</string>
+    <string name="agree_to_terms_and_conditions_privacy_policy">Agree to terms and conditions, privacy policy</string>
 </resources>

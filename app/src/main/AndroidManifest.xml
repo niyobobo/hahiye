@@ -25,12 +25,13 @@
             android:theme="@style/AppTheme.NoActionBar" />
         <activity
             android:name=".view.activity.SignUpActivity"
-            android:parentActivityName=".view.activity.AppIntroActivity" />
+            android:theme="@style/AppTheme.NoActionBar" />
         <activity
             android:name=".view.activity.AppIntroActivity"
             android:theme="@style/AppTheme.NoActionBar" />
         <activity
             android:name=".view.activity.InterestActivity"
+            android:label="@string/interest"
             android:parentActivityName=".view.activity.AppIntroActivity" />
     </application>
 

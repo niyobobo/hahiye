@@ -39,4 +39,8 @@ public class InterestViewModel extends AndroidViewModel {
     public void deleteInterest(InterestModel interestModel) {
         executorService.execute(() -> interestDao.delete(interestModel));
     }
+
+    public void selectInterest(InterestModel interest) {
+        executorService.execute(() -> interestDao.selectInterest(interest.getIsFollowed(), interest.getUid()));
+    }
 }

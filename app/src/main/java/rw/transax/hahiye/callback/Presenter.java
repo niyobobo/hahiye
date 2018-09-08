@@ -4,4 +4,6 @@ public interface Presenter {
     void performLogin();
 
     void backPressed();
+
+    void forgetPassword();
 }

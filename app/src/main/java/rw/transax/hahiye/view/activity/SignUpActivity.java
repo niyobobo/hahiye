@@ -1,8 +1,12 @@
 package rw.transax.hahiye.view.activity;
 
+import android.content.Intent;
 import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
+import android.support.v7.widget.Toolbar;
 import android.view.MenuItem;
+
+import java.util.Objects;
 
 import rw.transax.hahiye.R;
 
@@ -12,6 +16,14 @@ public class SignUpActivity extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_sign_up);
+        Toolbar toolbar = findViewById(R.id.toolbar);
+        setSupportActionBar(toolbar);
+        Objects.requireNonNull(getSupportActionBar()).setTitle(null);
+        Objects.requireNonNull(getSupportActionBar()).setDisplayHomeAsUpEnabled(true);
+
+        findViewById(R.id.btn_sign_up).setOnClickListener(view ->
+                startActivity(new Intent(this, InterestActivity.class))
+        );
     }
 
     @Override

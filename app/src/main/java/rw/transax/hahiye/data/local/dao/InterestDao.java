@@ -17,9 +17,12 @@ public interface InterestDao extends GenericDao<InterestModel> {
     @Insert(onConflict = REPLACE)
     void saveAllInterest(List<InterestModel> interestModels);
 
-    @Query("SELECT * FROM InterestModel")
+    @Query("SELECT * FROM interest")
     LiveData<List<InterestModel>> getAllInterest();
 
-    @Query("SELECT * FROM InterestModel WHERE uid= :uid")
+    @Query("SELECT * FROM interest WHERE uid= :uid")
     InterestModel getInterest(String uid);
+
+    @Query("UPDATE interest SET isFollowed = :value WHERE uid= :uid")
+    void selectInterest(int value, String uid);
 }

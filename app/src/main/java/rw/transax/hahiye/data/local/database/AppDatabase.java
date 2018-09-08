@@ -17,12 +17,11 @@ import rw.transax.hahiye.data.local.dao.UserDao;
 import rw.transax.hahiye.model.InterestModel;
 import rw.transax.hahiye.model.UserModel;
 
-@Database(entities = {UserModel.class, InterestModel.class}, version = 1)
+@Database(entities = {UserModel.class, InterestModel.class}, version = 2)
 public abstract class AppDatabase extends RoomDatabase {
 
     private static AppDatabase INSTANCE;
     private static final String DATABASE_NAME = "hahiye_db";
-    private static final Object object = new Object();
 
     private static List<InterestModel> INTEREST = Arrays.asList(
             new InterestModel(UUID.randomUUID().toString(), "Hotel", "https://image.flaticon.com/icons/svg/1055/1055677.svg"),
@@ -31,9 +30,10 @@ public abstract class AppDatabase extends RoomDatabase {
             new InterestModel(UUID.randomUUID().toString(), "Cafe-Resto", "https://image.flaticon.com/icons/svg/1055/1055677.svg")
     );
 
+
     public static AppDatabase getDbInstance(Context context) {
 
-        synchronized (object) {
+        synchronized (new Object()) {
             if (INSTANCE == null) {
                 INSTANCE = Room.databaseBuilder(
                         context.getApplicationContext(),

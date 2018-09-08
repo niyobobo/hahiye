@@ -7,8 +7,6 @@ import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
 import android.view.MenuItem;
 
-import java.util.UUID;
-
 import rw.transax.hahiye.R;
 import rw.transax.hahiye.model.InterestModel;
 import rw.transax.hahiye.view.adapter.InterestAdapter;
@@ -29,6 +27,7 @@ public class InterestActivity extends AppCompatActivity implements InterestAdapt
         recyclerView.setLayoutManager(new LinearLayoutManager(this));
 
         interestAdapter = new InterestAdapter(this, this);
+        interestAdapter.setHasStableIds(true);
         viewModel = ViewModelProviders.of(this).get(InterestViewModel.class);
         viewModel.getInterests().observe(this, list -> interestAdapter.submitList(list));
         recyclerView.setAdapter(interestAdapter);
@@ -36,11 +35,15 @@ public class InterestActivity extends AppCompatActivity implements InterestAdapt
 
     @Override
     public void onInterestSelected(InterestModel interest) {
-        /*
-         * Adding interest to ChipGroup
-         */
+        if (interest.getIsFollowed() == 0) {
+            interest.setIsFollowed(1);
+            viewModel.selectInterest(interest);
+        } else {
+            interest.setIsFollowed(0);
+            viewModel.selectInterest(interest);
+        }
 
-        viewModel.deleteInterest(interest);
+        //viewModel.deleteInterest(interest);
         //viewModel.addInterest(new InterestModel(UUID.randomUUID().toString(), "hello", "https://api.androidhive.info/images/food/5.jpg"));
 
     }

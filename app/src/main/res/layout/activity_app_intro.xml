@@ -24,23 +24,31 @@
         app:numDots="60"
         app:stepMultiplier="1" />
 
-    <rw.transax.hahiye.utils.WrapContentViewPager
-        android:id="@+id/viewPager_slider"
+    <FrameLayout
+        android:id="@+id/frame"
         android:layout_width="match_parent"
-        android:layout_height="wrap_content"
+        android:layout_height="0dp"
+        app:layout_constraintBottom_toTopOf="@+id/linear_dots"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent" />
+        app:layout_constraintTop_toTopOf="@+id/particles">
+
+        <android.support.v4.view.ViewPager
+            android:id="@+id/viewPager_slider"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent" />
+    </FrameLayout>
 
     <LinearLayout
         android:id="@+id/linear_dots"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
+        android:layout_marginBottom="@dimen/corner_button"
         android:gravity="center"
         android:orientation="horizontal"
+        app:layout_constraintBottom_toTopOf="@+id/btn_signIn"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/viewPager_slider" />
+        app:layout_constraintStart_toStartOf="parent" />
 
     <android.support.design.button.MaterialButton
         android:id="@+id/btn_signIn"
