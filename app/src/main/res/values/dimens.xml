@@ -12,6 +12,6 @@
     <dimen name="text_size_small">12sp</dimen>
     <dimen name="corner_button">30dp</dimen>
 
-    <dimen name="design_fab_size_normal" tools:override="true">80dp</dimen>
+    <dimen name="design_fab_size_mini" tools:override="true">80dp</dimen>
     <dimen name="stroke_width">1dp</dimen>
 </resources>

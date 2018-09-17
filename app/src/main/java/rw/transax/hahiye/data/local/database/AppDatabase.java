@@ -44,7 +44,7 @@ public abstract class AppDatabase extends RoomDatabase {
                             public void onCreate(@NonNull SupportSQLiteDatabase db) {
                                 super.onCreate(db);
                                 Executors.newSingleThreadExecutor().execute(() ->
-                                        getDbInstance(context).interestDao().saveAllInterest(INTEREST));
+                                        getDbInstance(context).interestDao().saveInterests(INTEREST));
                             }
                         }).build();
             }

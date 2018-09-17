@@ -9,7 +9,7 @@
         android:background="@drawable/bg_login"
         android:focusable="true"
         android:focusableInTouchMode="true"
-        tools:context="rw.transax.hahiye.view.activity.SignUpActivity">
+        tools:context="rw.transax.hahiye.ui.activity.SignUpActivity">
 
         <android.support.design.widget.AppBarLayout
             android:layout_width="match_parent"

@@ -15,7 +15,7 @@ import static android.arch.persistence.room.OnConflictStrategy.REPLACE;
 public interface InterestDao extends GenericDao<InterestModel> {
 
     @Insert(onConflict = REPLACE)
-    void saveAllInterest(List<InterestModel> interestModels);
+    void saveInterests(List<InterestModel> interestModels);
 
     @Query("SELECT * FROM interest")
     LiveData<List<InterestModel>> getAllInterest();
@@ -25,4 +25,7 @@ public interface InterestDao extends GenericDao<InterestModel> {
 
     @Query("UPDATE interest SET isFollowed = :value WHERE uid= :uid")
     void selectInterest(int value, String uid);
+
+    @Query("SELECT COUNT(isFollowed) FROM interest WHERE isFollowed = 1")
+    int totalSelectedInterest();
 }

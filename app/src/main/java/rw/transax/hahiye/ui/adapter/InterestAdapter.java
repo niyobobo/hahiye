@@ -1,4 +1,4 @@
-package rw.transax.hahiye.view.adapter;
+package rw.transax.hahiye.ui.adapter;
 
 import android.content.Context;
 import android.support.annotation.NonNull;
@@ -84,8 +84,7 @@ public class InterestAdapter extends ListAdapter<InterestModel, InterestAdapter.
                     .into(icon);
 
             select.setOnClickListener(view -> {
-                if (interestSelected != null)
-                    interestSelected.onInterestSelected(interest);
+                if (interestSelected != null) interestSelected.onInterestSelected(interest);
             });
         }
     }

@@ -44,4 +44,5 @@
         app:rippleColor="@color/colorAccent"
         app:strokeColor="@color/colorAccent"
         app:strokeWidth="@dimen/view_size" />
+
 </android.support.constraint.ConstraintLayout>

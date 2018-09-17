@@ -24,23 +24,20 @@ public class InterestViewModel extends AndroidViewModel {
         executorService = Executors.newSingleThreadExecutor();
     }
 
-    public LiveData<List<InterestModel>> getInterests() {
+    public void saveAllInterests(List<InterestModel> interestModels) {
+        executorService.execute(() -> interestDao.saveInterests(interestModels));
+    }
+
+    public LiveData<List<InterestModel>> getAllInterests() {
         return interestDao.getAllInterest();
     }
 
-    public void saveInterests(List<InterestModel> interestModels) {
-        executorService.execute(() -> interestDao.saveAllInterest(interestModels));
-    }
-
-    public void addInterest(InterestModel interestModel) {
-        executorService.execute(() -> interestDao.insert(interestModel));
-    }
-
-    public void deleteInterest(InterestModel interestModel) {
-        executorService.execute(() -> interestDao.delete(interestModel));
-    }
 
     public void selectInterest(InterestModel interest) {
         executorService.execute(() -> interestDao.selectInterest(interest.getIsFollowed(), interest.getUid()));
+    }
+
+    public int getTotalInterest() {
+        return interestDao.totalSelectedInterest();
     }
 }

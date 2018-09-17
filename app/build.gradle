@@ -77,7 +77,7 @@ dependencies {
      */
     implementation 'com.github.doctoror.particlesdrawable:library:1.0.9'
     implementation 'com.github.bumptech.glide:glide:4.7.1'
-
+    implementation 'com.fede987:status-bar-alert:1.0.2'
 
     testImplementation 'junit:junit:4.12'
     androidTestImplementation 'com.android.support.test:runner:1.0.2'

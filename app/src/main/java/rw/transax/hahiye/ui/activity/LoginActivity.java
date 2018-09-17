@@ -1,4 +1,4 @@
-package rw.transax.hahiye.view.activity;
+package rw.transax.hahiye.ui.activity;
 
 import android.arch.lifecycle.ViewModelProviders;
 import android.databinding.DataBindingUtil;
