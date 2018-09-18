@@ -9,11 +9,11 @@ import android.support.v7.widget.RecyclerView;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
-import android.widget.Button;
 import android.widget.ImageView;
 import android.widget.TextView;
 
 import com.bumptech.glide.Glide;
+import com.makeramen.roundedimageview.RoundedImageView;
 
 import rw.transax.hahiye.R;
 import rw.transax.hahiye.model.InterestModel;
@@ -42,21 +42,14 @@ public class InterestAdapter extends ListAdapter<InterestModel, InterestAdapter.
     @NonNull
     @Override
     public ViewHolder onCreateViewHolder(@NonNull ViewGroup parent, int viewType) {
-
         LayoutInflater inflater = LayoutInflater.from(parent.getContext());
-        View selected = inflater.inflate(R.layout.item_interest_selected, parent, false);
         View notSelected = inflater.inflate(R.layout.item_interest_layout, parent, false);
-        return viewType == 1 ? new ViewHolder(selected) : new ViewHolder(notSelected);
+        return new ViewHolder(notSelected);
     }
 
     @Override
     public void onBindViewHolder(@NonNull ViewHolder holder, int position) {
         holder.bindTo(getItem(position));
-    }
-
-    @Override
-    public int getItemViewType(int position) {
-        return getItem(position).getIsFollowed() == 1 ? 1 : 0;
     }
 
     @Override
@@ -66,24 +59,24 @@ public class InterestAdapter extends ListAdapter<InterestModel, InterestAdapter.
 
     class ViewHolder extends RecyclerView.ViewHolder {
         private TextView name;
-        private ImageView icon;
-        private Button select;
+        private RoundedImageView icon;
+        private ImageView selected;
 
         ViewHolder(View itemView) {
             super(itemView);
             name = itemView.findViewById(R.id.interest_name);
             icon = itemView.findViewById(R.id.interest_icon);
-            select = itemView.findViewById(R.id.btn_select);
+            selected = itemView.findViewById(R.id.selected_interest);
         }
 
         void bindTo(InterestModel interest) {
             name.setText(interest.getName());
-
             Glide.with(context)
                     .load(interest.getIcon())
                     .into(icon);
 
-            select.setOnClickListener(view -> {
+            selected.setVisibility(interest.getIsFollowed() == 1 ? View.VISIBLE : View.GONE);
+            icon.setOnClickListener(view -> {
                 if (interestSelected != null) interestSelected.onInterestSelected(interest);
             });
         }

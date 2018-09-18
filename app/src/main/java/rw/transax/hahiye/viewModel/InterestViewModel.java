@@ -40,4 +40,8 @@ public class InterestViewModel extends AndroidViewModel {
     public int getTotalInterest() {
         return interestDao.totalSelectedInterest();
     }
+
+    public void addInterest(InterestModel interestModel) {
+        executorService.execute(() -> interestDao.insert(interestModel));
+    }
 }

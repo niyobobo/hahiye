@@ -31,8 +31,7 @@
             android:theme="@style/AppTheme.NoActionBar" />
         <activity
             android:name=".ui.activity.InterestActivity"
-            android:label="@string/interest"
-            android:parentActivityName=".ui.activity.AppIntroActivity" />
+            android:theme="@style/AppTheme.NoActionBar"/>
     </application>
 
 </manifest>

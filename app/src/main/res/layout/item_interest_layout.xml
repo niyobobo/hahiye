@@ -2,47 +2,40 @@
 <android.support.constraint.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/card_interest"
     android:layout_width="match_parent"
-    android:layout_height="wrap_content"
-    android:padding="@dimen/small_margin">
+    android:layout_height="wrap_content">
 
-    <ImageView
+    <com.makeramen.roundedimageview.RoundedImageView
         android:id="@+id/interest_icon"
-        android:layout_width="?android:attr/actionBarSize"
-        android:layout_height="?android:attr/actionBarSize"
+        android:layout_width="match_parent"
+        android:layout_height="120dp"
         android:contentDescription="@string/app_name"
         app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
+        app:riv_corner_radius="@dimen/big_margin"
         app:srcCompat="@drawable/ic_hahiye" />
+
+    <ImageView
+        android:id="@+id/selected_interest"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:contentDescription="@string/app_name"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:srcCompat="@drawable/ic_selected" />
 
     <TextView
         android:id="@+id/interest_name"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginLeft="@dimen/horizontal_margin"
-        android:layout_marginStart="@dimen/horizontal_margin"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintStart_toEndOf="@+id/interest_icon"
-        app:layout_constraintTop_toTopOf="parent"
+        android:layout_marginBottom="@dimen/big_margin"
+        android:textColor="@color/colorWhite"
+        android:textStyle="bold"
+        app:layout_constraintBottom_toBottomOf="@+id/interest_icon"
+        app:layout_constraintEnd_toEndOf="@+id/interest_icon"
+        app:layout_constraintStart_toStartOf="@+id/interest_icon"
         tools:text="TextView" />
-
-    <android.support.design.button.MaterialButton
-        android:id="@+id/btn_select"
-        style="?android:attr/borderlessButtonStyle"
-        android:layout_width="100dp"
-        android:layout_height="@dimen/edit_text_size"
-        android:text="@string/follow"
-        android:textColor="@color/colorAccent"
-        android:textSize="@dimen/text_size_small"
-        app:backgroundTint="@color/colorWhite"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="1.0"
-        app:layout_constraintStart_toEndOf="@+id/interest_name"
-        app:layout_constraintTop_toTopOf="parent"
-        app:rippleColor="@color/colorAccent"
-        app:strokeColor="@color/colorAccent"
-        app:strokeWidth="@dimen/view_size" />
-
 </android.support.constraint.ConstraintLayout>
