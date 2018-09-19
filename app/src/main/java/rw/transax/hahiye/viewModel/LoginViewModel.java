@@ -29,7 +29,7 @@ public class LoginViewModel extends AndroidViewModel {
 
     public LoginViewModel(@NonNull Application application) {
         super(application);
-        userDao = AppDatabase.getDbInstance(application).userDao();
+        //userDao = AppDatabase.getInstance(application).userDao();
         executorService = Executors.newSingleThreadExecutor();
     }
 

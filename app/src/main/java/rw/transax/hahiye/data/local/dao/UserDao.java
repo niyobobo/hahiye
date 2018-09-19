@@ -8,7 +8,7 @@ import rw.transax.hahiye.model.UserModel;
 @Dao
 public interface UserDao extends GenericDao<UserModel> {
 
-    @Query("SELECT * FROM UserModel WHERE uid= :user_id")
+    @Query("SELECT * FROM user WHERE uid= :user_id")
     UserModel getUserInfo(String user_id);
 
 }

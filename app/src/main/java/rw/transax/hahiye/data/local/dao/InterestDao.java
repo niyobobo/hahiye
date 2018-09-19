@@ -27,5 +27,5 @@ public interface InterestDao extends GenericDao<InterestModel> {
     void selectInterest(int value, String uid);
 
     @Query("SELECT COUNT(isFollowed) FROM interest WHERE isFollowed = 1")
-    int totalSelectedInterest();
+    LiveData<Integer> totalSelectedInterest();
 }

@@ -3,45 +3,83 @@ package rw.transax.hahiye.viewModel;
 import android.app.Application;
 import android.arch.lifecycle.AndroidViewModel;
 import android.arch.lifecycle.LiveData;
+import android.arch.lifecycle.MediatorLiveData;
+import android.arch.lifecycle.ViewModel;
+import android.arch.lifecycle.ViewModelProvider;
 import android.support.annotation.NonNull;
 
 import java.util.List;
-import java.util.concurrent.ExecutorService;
-import java.util.concurrent.Executors;
 
-import rw.transax.hahiye.data.local.dao.InterestDao;
-import rw.transax.hahiye.data.local.database.AppDatabase;
+import rw.transax.hahiye.data.BasicApp;
+import rw.transax.hahiye.data.repository.DataRepository;
 import rw.transax.hahiye.model.InterestModel;
 
 public class InterestViewModel extends AndroidViewModel {
 
-    private InterestDao interestDao;
-    private ExecutorService executorService;
+    private final MediatorLiveData<List<InterestModel>> mObservableInterests;
+    private final MediatorLiveData<Integer> mTotalInterest;
+    private final DataRepository dataRepository;
 
-    public InterestViewModel(@NonNull Application application) {
+    InterestViewModel(@NonNull Application application, DataRepository dataRepository) {
         super(application);
-        interestDao = AppDatabase.getDbInstance(application).interestDao();
-        executorService = Executors.newSingleThreadExecutor();
+        this.dataRepository = dataRepository;
+        mObservableInterests = new MediatorLiveData<>();
+        mTotalInterest = new MediatorLiveData<>();
+        // set by default null, until we get data from the database.
+        mObservableInterests.setValue(null);
+        mTotalInterest.setValue(0);
+        //Get data from room database.
+        LiveData<List<InterestModel>> allInterests = ((BasicApp) application).getDataRepository()
+                .getAllInterests();
+        LiveData<Integer> totalInterest = ((BasicApp) application).getDataRepository().getTotalSelectedInterests();
+        // observe the changes of the products from the database and forward them
+        mObservableInterests.addSource(allInterests, mObservableInterests::setValue);
+        mTotalInterest.addSource(totalInterest, mTotalInterest::setValue);
     }
+
+    /**
+     * Exposing LiveData to the ui to be observed.
+     */
 
     public void saveAllInterests(List<InterestModel> interestModels) {
-        executorService.execute(() -> interestDao.saveInterests(interestModels));
+        dataRepository.saveAllInterests(interestModels);
     }
 
-    public LiveData<List<InterestModel>> getAllInterests() {
-        return interestDao.getAllInterest();
+    public LiveData<List<InterestModel>> getObservableInterests() {
+        return mObservableInterests;
     }
-
 
     public void selectInterest(InterestModel interest) {
-        executorService.execute(() -> interestDao.selectInterest(interest.getIsFollowed(), interest.getUid()));
+        dataRepository.selectInterest(interest);
     }
 
-    public int getTotalInterest() {
-        return interestDao.totalSelectedInterest();
+    public LiveData<Integer> getTotalInterest() {
+        return mTotalInterest;
     }
 
     public void addInterest(InterestModel interestModel) {
-        executorService.execute(() -> interestDao.insert(interestModel));
+        dataRepository.addInterest(interestModel);
+    }
+
+    /**
+     * This creator is to showcase how to inject dependencies into ViewModels.
+     */
+    public static class Factory extends ViewModelProvider.NewInstanceFactory {
+
+        @NonNull
+        private final Application mApplication;
+        private final DataRepository mRepository;
+
+        public Factory(@NonNull Application application) {
+            mApplication = application;
+            mRepository = ((BasicApp) application).getDataRepository();
+        }
+
+        @NonNull
+        @Override
+        public <T extends ViewModel> T create(@NonNull Class<T> modelClass) {
+            //noinspection unchecked
+            return (T) new InterestViewModel(mApplication, mRepository);
+        }
     }
 }

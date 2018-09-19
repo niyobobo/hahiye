@@ -54,7 +54,7 @@ public class InterestAdapter extends ListAdapter<InterestModel, InterestAdapter.
 
     @Override
     public long getItemId(int position) {
-        return getItem(position).getId();
+        return position;
     }
 
     class ViewHolder extends RecyclerView.ViewHolder {
@@ -95,8 +95,12 @@ public class InterestAdapter extends ListAdapter<InterestModel, InterestAdapter.
         }
 
         @Override
-        public boolean areContentsTheSame(@NonNull InterestModel interestModel, @NonNull InterestModel t1) {
-            return interestModel.equals(t1);
+        public boolean areContentsTheSame(@NonNull InterestModel oldInterest, @NonNull InterestModel newInterest) {
+            return oldInterest.getId() == newInterest.getId()
+                    && oldInterest.getUid().equals(newInterest.getUid())
+                    && oldInterest.getName().equals(newInterest.getName())
+                    && oldInterest.getIcon().equals(newInterest.getIcon())
+                    && oldInterest.getIsFollowed() == (newInterest.getIsFollowed());
         }
 
         @Nullable
