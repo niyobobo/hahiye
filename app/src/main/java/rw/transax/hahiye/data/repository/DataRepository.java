@@ -57,7 +57,7 @@ public class DataRepository {
 
     public void selectInterest(InterestModel interestModel) {
         mExecutorService.execute(() ->
-                mDatabase.interestDao().selectInterest(interestModel.getIsFollowed(), interestModel.getUid()));
+                mDatabase.interestDao().selectInterest(interestModel.isFollowed(), interestModel.getUid()));
     }
 
     public void addInterest(InterestModel interestModel) {

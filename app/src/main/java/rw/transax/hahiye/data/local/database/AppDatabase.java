@@ -6,18 +6,22 @@ import android.arch.persistence.db.SupportSQLiteDatabase;
 import android.arch.persistence.room.Database;
 import android.arch.persistence.room.Room;
 import android.arch.persistence.room.RoomDatabase;
+import android.arch.persistence.room.TypeConverters;
 import android.content.Context;
 import android.support.annotation.NonNull;
 import android.support.annotation.VisibleForTesting;
 
 import java.util.List;
 
+import rw.transax.hahiye.data.converter.BooleanConverter;
+import rw.transax.hahiye.data.converter.DateConverter;
 import rw.transax.hahiye.data.local.dao.InterestDao;
 import rw.transax.hahiye.data.local.dao.UserDao;
 import rw.transax.hahiye.model.InterestModel;
 import rw.transax.hahiye.model.UserModel;
 import rw.transax.hahiye.utils.AppExecutors;
 
+@TypeConverters({DateConverter.class, BooleanConverter.class})
 @Database(entities = {UserModel.class, InterestModel.class}, version = 2)
 public abstract class AppDatabase extends RoomDatabase {
 

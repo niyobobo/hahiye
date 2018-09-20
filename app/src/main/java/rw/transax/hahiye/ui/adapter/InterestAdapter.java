@@ -75,7 +75,7 @@ public class InterestAdapter extends ListAdapter<InterestModel, InterestAdapter.
                     .load(interest.getIcon())
                     .into(icon);
 
-            selected.setVisibility(interest.getIsFollowed() == 1 ? View.VISIBLE : View.GONE);
+            selected.setVisibility(interest.isFollowed() ? View.VISIBLE : View.GONE);
             icon.setOnClickListener(view -> {
                 if (interestSelected != null) interestSelected.onInterestSelected(interest);
             });
@@ -100,7 +100,7 @@ public class InterestAdapter extends ListAdapter<InterestModel, InterestAdapter.
                     && oldInterest.getUid().equals(newInterest.getUid())
                     && oldInterest.getName().equals(newInterest.getName())
                     && oldInterest.getIcon().equals(newInterest.getIcon())
-                    && oldInterest.getIsFollowed() == (newInterest.getIsFollowed());
+                    && oldInterest.isFollowed() == (newInterest.isFollowed());
         }
 
         @Nullable

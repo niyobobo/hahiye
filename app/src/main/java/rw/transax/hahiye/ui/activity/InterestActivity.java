@@ -63,7 +63,7 @@ public class InterestActivity extends AppCompatActivity implements
 
     @Override
     public void onInterestSelected(InterestModel interest) {
-        interest.setIsFollowed(interest.getIsFollowed() == 0 ? 1 : 0);
+        interest.setFollowed(!interest.isFollowed());
         viewModel.selectInterest(interest);
     }
 

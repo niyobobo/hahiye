@@ -12,21 +12,11 @@ public class InterestModel {
     private String uid;
     private String name;
     private String icon;
-    private int isFollowed;
-    private int isUploaded;
+    private boolean isFollowed;
+    private boolean isUploaded;
 
     @Ignore
     public InterestModel() {
-    }
-
-
-    public InterestModel(int id, String uid, String name, String icon, int isFollowed, int isUploaded) {
-        this.id = id;
-        this.uid = uid;
-        this.name = name;
-        this.icon = icon;
-        this.isFollowed = isFollowed;
-        this.isUploaded = isUploaded;
     }
 
     @Ignore
@@ -34,8 +24,17 @@ public class InterestModel {
         this.uid = uid;
         this.name = name;
         this.icon = icon;
-        this.isFollowed = 0;
-        this.isUploaded = 0;
+        this.isFollowed = false;
+        this.isUploaded = false;
+    }
+
+    public InterestModel(int id, String uid, String name, String icon, boolean isFollowed, boolean isUploaded) {
+        this.id = id;
+        this.uid = uid;
+        this.name = name;
+        this.icon = icon;
+        this.isFollowed = isFollowed;
+        this.isUploaded = isUploaded;
     }
 
     public int getId() {
@@ -70,19 +69,19 @@ public class InterestModel {
         this.icon = icon;
     }
 
-    public int getIsFollowed() {
+    public boolean isFollowed() {
         return isFollowed;
     }
 
-    public void setIsFollowed(int isFollowed) {
-        this.isFollowed = isFollowed;
+    public void setFollowed(boolean followed) {
+        isFollowed = followed;
     }
 
-    public int getIsUploaded() {
+    public boolean isUploaded() {
         return isUploaded;
     }
 
-    public void setIsUploaded(int isUploaded) {
-        this.isUploaded = isUploaded;
+    public void setUploaded(boolean uploaded) {
+        isUploaded = uploaded;
     }
 }
