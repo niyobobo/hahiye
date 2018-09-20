@@ -4,8 +4,6 @@ import android.app.Application;
 import android.arch.lifecycle.AndroidViewModel;
 import android.arch.lifecycle.LiveData;
 import android.arch.lifecycle.MediatorLiveData;
-import android.arch.lifecycle.ViewModel;
-import android.arch.lifecycle.ViewModelProvider;
 import android.support.annotation.NonNull;
 
 import java.util.List;
@@ -20,9 +18,9 @@ public class InterestViewModel extends AndroidViewModel {
     private final MediatorLiveData<Integer> mTotalInterest;
     private final DataRepository dataRepository;
 
-    InterestViewModel(@NonNull Application application, DataRepository dataRepository) {
+    InterestViewModel(@NonNull Application application) {
         super(application);
-        this.dataRepository = dataRepository;
+        dataRepository = ((BasicApp) application).getDataRepository();
         mObservableInterests = new MediatorLiveData<>();
         mTotalInterest = new MediatorLiveData<>();
         // set by default null, until we get data from the database.
@@ -61,25 +59,4 @@ public class InterestViewModel extends AndroidViewModel {
         dataRepository.addInterest(interestModel);
     }
 
-    /**
-     * This creator is to showcase how to inject dependencies into ViewModels.
-     */
-    public static class Factory extends ViewModelProvider.NewInstanceFactory {
-
-        @NonNull
-        private final Application mApplication;
-        private final DataRepository mRepository;
-
-        public Factory(@NonNull Application application) {
-            mApplication = application;
-            mRepository = ((BasicApp) application).getDataRepository();
-        }
-
-        @NonNull
-        @Override
-        public <T extends ViewModel> T create(@NonNull Class<T> modelClass) {
-            //noinspection unchecked
-            return (T) new InterestViewModel(mApplication, mRepository);
-        }
-    }
 }

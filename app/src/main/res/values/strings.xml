@@ -13,4 +13,5 @@
     <string name="create_account">Create account</string>
     <string name="agree_to_terms_and_conditions_privacy_policy">Agree to terms and conditions, privacy policy</string>
     <string name="next">Next</string>
+    <string name="select_at_least_5_interest_to_continue">Select at least 5 interest to continue</string>
 </resources>

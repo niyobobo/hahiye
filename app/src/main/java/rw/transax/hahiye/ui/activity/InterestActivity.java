@@ -18,7 +18,9 @@ import rw.transax.hahiye.ui.adapter.InterestAdapter;
 import rw.transax.hahiye.utils.ItemOffsetDecoration;
 import rw.transax.hahiye.viewModel.InterestViewModel;
 
-public class InterestActivity extends AppCompatActivity implements InterestAdapter.InterestSelected {
+public class InterestActivity extends AppCompatActivity implements
+        InterestAdapter.InterestSelected,
+        View.OnClickListener {
 
     private InterestAdapter interestAdapter;
     private InterestViewModel viewModel;
@@ -31,8 +33,7 @@ public class InterestActivity extends AppCompatActivity implements InterestAdapt
         setContentView(R.layout.activity_interest);
         init();
 
-        InterestViewModel.Factory factory = new InterestViewModel.Factory(getApplication());
-        viewModel = ViewModelProviders.of(this, factory).get(InterestViewModel.class);
+        viewModel = ViewModelProviders.of(this).get(InterestViewModel.class);
 
         viewModel.getObservableInterests().observe(this, list ->
                 interestAdapter.submitList(list));
@@ -43,7 +44,6 @@ public class InterestActivity extends AppCompatActivity implements InterestAdapt
         interestAdapter = new InterestAdapter(this, this);
         interestAdapter.setHasStableIds(true);
         mRecyclerView.setAdapter(interestAdapter);
-
     }
 
     private void init() {
@@ -54,6 +54,7 @@ public class InterestActivity extends AppCompatActivity implements InterestAdapt
         ItemOffsetDecoration decoration = new ItemOffsetDecoration(this, R.dimen.small_margin);
 
         mActionButton = findViewById(R.id.action_button);
+        mActionButton.setOnClickListener(this);
         mRecyclerView = findViewById(R.id.recycle_interests);
         mRecyclerView.setLayoutManager(new GridLayoutManager(this, 3));
         mRecyclerView.setHasFixedSize(true);
@@ -64,9 +65,6 @@ public class InterestActivity extends AppCompatActivity implements InterestAdapt
     public void onInterestSelected(InterestModel interest) {
         interest.setIsFollowed(interest.getIsFollowed() == 0 ? 1 : 0);
         viewModel.selectInterest(interest);
-
-        //viewModel.deleteInterest(interest);
-        //viewModel.addInterest(new InterestModel(UUID.randomUUID().toString(), "hello", "https://api.androidhive.info/images/food/5.jpg"));
     }
 
     @Override
@@ -77,5 +75,15 @@ public class InterestActivity extends AppCompatActivity implements InterestAdapt
                 break;
         }
         return true;
+    }
+
+    @Override
+    public void onClick(View v) {
+        switch (v.getId()) {
+            case R.id.action_button:
+                break;
+            default:
+                break;
+        }
     }
 }

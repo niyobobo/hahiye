@@ -9,7 +9,7 @@
     <android.support.design.widget.AppBarLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:background="@android:color/transparent"
+        android:background="@color/colorTransparent"
         android:padding="@dimen/small_margin"
         app:elevation="0dp">
 
@@ -27,11 +27,11 @@
                 android:orientation="horizontal">
 
                 <TextView
-                    android:layout_width="wrap_content"
+                    android:layout_width="0dp"
                     android:layout_height="wrap_content"
-                    android:padding="@dimen/small_margin"
                     android:layout_weight="1"
-                    android:text="Select at least 5 interest to continue"
+                    android:padding="@dimen/small_margin"
+                    android:text="@string/select_at_least_5_interest_to_continue"
                     android:textColor="@color/colorBlack"
                     android:textSize="24sp"
                     android:textStyle="bold" />

@@ -8,6 +8,7 @@
     <color name="colorBlack">#000000</color>
     <color name="colorView">#99a3a0a0</color>
     <color name="colorParticles">#33ffffff</color>
+    <color name="colorTransparent">#00ffffff</color>
 
     <array name="dots_active">
         <item>@color/colorButtonPressed</item>
