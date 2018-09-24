@@ -12,6 +12,7 @@ android {
         applicationId "rw.transax.hahiye"
         minSdkVersion 16
         targetSdkVersion 28
+        multiDexEnabled true
         versionCode versionMajor * 1000 + versionMinor * 100 + versionPatch
         versionName "${versionMajor}.${versionMinor}.${versionPatch}"
         vectorDrawables.useSupportLibrary = true
@@ -26,15 +27,23 @@ android {
 
     buildTypes {
         release {
-            minifyEnabled false
+            minifyEnabled true
             resValue("string", "application_version", "${defaultConfig.versionName}")
             proguardFiles getDefaultProguardFile('proguard-android.txt'), 'proguard-rules.pro'
         }
 
         debug {
+            minifyEnabled false
             resValue("string", "app_version", "${defaultConfig.versionName}")
         }
     }
+
+    lintOptions {
+        disable 'GoogleAppIndexingWarning', 'HardcodedText', 'InvalidPackage'
+        textReport true
+        textOutput "stdout"
+    }
+
     dataBinding {
         enabled = true
     }
@@ -43,6 +52,11 @@ android {
         sourceCompatibility JavaVersion.VERSION_1_8
     }
 }
+/**
+ * After saving my .proto file app/src/main/proto folder
+ * This script have to be added into gradle in order to
+ * generate the Proto classes from the PROTO File
+ */
 
 protobuf {
     protoc { artifact = 'com.google.protobuf:protoc:3.5.1-1' }
@@ -102,6 +116,13 @@ dependencies {
     // workaround for https://github.com/google/protobuf/issues/1889
     protobuf 'com.google.protobuf:protobuf-java:3.4.0'
 
+
+    implementation 'com.google.android.gms:play-services-base:15.0.1'
+    implementation('com.google.auth:google-auth-library-oauth2-http:0.9.0') {
+        exclude group: 'org.apache.httpcomponents', module: 'httpclient'
+    }
+    implementation 'com.google.truth:truth:0.36'
+
     /**
      * Others
      */
@@ -109,6 +130,7 @@ dependencies {
     implementation 'com.github.bumptech.glide:glide:4.7.1'
     implementation 'com.fede987:status-bar-alert:1.0.2'
     implementation 'com.makeramen:roundedimageview:2.3.0'
+    implementation 'com.android.support:multidex:1.0.3'
 
     testImplementation 'junit:junit:4.12'
     androidTestImplementation 'com.android.support.test:runner:1.0.2'

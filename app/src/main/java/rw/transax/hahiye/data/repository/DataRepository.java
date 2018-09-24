@@ -2,25 +2,43 @@ package rw.transax.hahiye.data.repository;
 
 import android.arch.lifecycle.LiveData;
 import android.arch.lifecycle.MediatorLiveData;
+import android.util.Log;
 
+import java.io.InputStream;
+import java.text.ParseException;
+import java.text.SimpleDateFormat;
+import java.util.Date;
 import java.util.List;
-import java.util.concurrent.ExecutorService;
-import java.util.concurrent.Executors;
 
+import io.grpc.ManagedChannel;
+import io.grpc.StatusRuntimeException;
+import rw.transax.hahiye.Account;
+import rw.transax.hahiye.AccountRequest;
+import rw.transax.hahiye.AccountServiceGrpc;
+import rw.transax.hahiye.AuthRequest;
+import rw.transax.hahiye.AuthResponse;
+import rw.transax.hahiye.AuthServiceGrpc;
 import rw.transax.hahiye.data.local.database.AppDatabase;
+import rw.transax.hahiye.data.remote.RemoteData;
 import rw.transax.hahiye.model.InterestModel;
+import rw.transax.hahiye.model.UserModel;
+import rw.transax.hahiye.utils.AppExecutors;
+import rw.transax.hahiye.utils.CustomOkHttpChannelBuilder;
+import rw.transax.hahiye.utils.JwtCallCredential;
+
+import static android.support.constraint.Constraints.TAG;
 
 public class DataRepository {
 
     private static DataRepository sInstance;
     private final AppDatabase mDatabase;
+    private final AppExecutors appExecutors;
     private MediatorLiveData<List<InterestModel>> mObservableInterests;
-    private final ExecutorService mExecutorService;
 
     private DataRepository(final AppDatabase database) {
         mDatabase = database;
+        appExecutors = new AppExecutors();
         mObservableInterests = new MediatorLiveData<>();
-        mExecutorService = Executors.newSingleThreadExecutor();
         //get all interest in background
         mObservableInterests.addSource(mDatabase.interestDao().getAllInterest(),
                 interestModelList -> {
@@ -40,6 +58,7 @@ public class DataRepository {
 
     /*
      * Get the data from the database and get notified when they get changed.
+     *
      * Data related to interests
      */
 
@@ -56,12 +75,70 @@ public class DataRepository {
     }
 
     public void selectInterest(InterestModel interestModel) {
-        mExecutorService.execute(() ->
+        appExecutors.getDiskIO().execute(() ->
                 mDatabase.interestDao().selectInterest(interestModel.isFollowed(), interestModel.getUid()));
     }
 
     public void addInterest(InterestModel interestModel) {
-        mExecutorService.execute(() ->
+        appExecutors.getDiskIO().execute(() ->
                 mDatabase.interestDao().insert(interestModel));
+    }
+
+    /**
+     * User account related information
+     */
+
+    public void loginFromNetwork(String username, String password, InputStream inputStream) {
+        appExecutors.getNetworkIO().execute(() -> {
+            try {
+                Log.d(TAG, "Connecting to secure channel....");
+                ManagedChannel managedChannel = CustomOkHttpChannelBuilder.build(RemoteData.BASE_URL,
+                        8080,
+                        null,
+                        true,
+                        inputStream);
+                AuthServiceGrpc.AuthServiceBlockingStub stub = AuthServiceGrpc.newBlockingStub(managedChannel);
+                AuthRequest authRequest = AuthRequest.newBuilder()
+                        .setUsername(username)
+                        .setPassword(password)
+                        .build();
+                AuthResponse response = stub.login(authRequest);
+
+                JwtCallCredential credential = new JwtCallCredential(response.getToken());
+                AccountServiceGrpc.AccountServiceBlockingStub accountStub = AccountServiceGrpc
+                        .newBlockingStub(managedChannel)
+                        .withCallCredentials(credential);
+                AccountRequest accountRequest = AccountRequest.newBuilder().build();
+                Account account = accountStub.getAccount(accountRequest);
+
+                /*
+                 *  converting account response to UserModel in order to be saved into local database
+                 */
+
+                String timeStamp = String.valueOf(account.getCreatedAt());
+
+                Date createdAt = new SimpleDateFormat().parse(timeStamp);
+
+                UserModel userModel = new UserModel(
+                        account.getId(),
+                        account.getName(),
+                        account.getUsername(),
+                        account.getPassword(),
+                        account.getEmail(),
+                        account.getProfileUrl(),
+                        account.getVerified(),
+                        createdAt
+                );
+                appExecutors.getDiskIO().execute(() -> mDatabase.userDao().insert(userModel));
+
+            } catch (StatusRuntimeException | ParseException e) {
+                e.printStackTrace();
+            }
+        });
+
+    }
+
+    public LiveData<UserModel> getUserInformation() {
+        return mDatabase.userDao().getUserInfo();
     }
 }

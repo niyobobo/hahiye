@@ -25,7 +25,8 @@ public class PlaceModel {
     public PlaceModel() {
     }
 
-    public PlaceModel(int id, String uid, String name, String featured, String website, String tagLine, String contact, int verified, String location, String amenity, Date createdAt) {
+    public PlaceModel(int id, String uid, String name, String featured, String website, String tagLine,
+                      String contact, int verified, String location, String amenity, Date createdAt) {
         this.id = id;
         this.uid = uid;
         this.name = name;
@@ -107,7 +108,7 @@ public class PlaceModel {
         return location;
     }
 
-    public void setLocation(String location) {
+    public void setLocation(String  location) {
         this.location = location;
     }
 
@@ -125,5 +126,33 @@ public class PlaceModel {
 
     public void setCreatedAt(Date createdAt) {
         this.createdAt = createdAt;
+    }
+
+
+    private static class Location {
+
+        private String type;
+        private String coordinates;
+
+        public Location(String type, String coordinates) {
+            this.type = type;
+            this.coordinates = coordinates;
+        }
+
+        public String getType() {
+            return type;
+        }
+
+        public void setType(String type) {
+            this.type = type;
+        }
+
+        public String getCoordinates() {
+            return coordinates;
+        }
+
+        public void setCoordinates(String coordinates) {
+            this.coordinates = coordinates;
+        }
     }
 }

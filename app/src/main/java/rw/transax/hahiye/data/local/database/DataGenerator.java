@@ -13,6 +13,14 @@ public class DataGenerator {
                 new InterestModel(UUID.randomUUID().toString(), "Hotel", "https://api.androidhive.info/images/food/5.jpg"),
                 new InterestModel(UUID.randomUUID().toString(), "Pub", "https://api.androidhive.info/images/food/5.jpg"),
                 new InterestModel(UUID.randomUUID().toString(), "Restaurant", "https://api.androidhive.info/images/food/5.jpg"),
+                new InterestModel(UUID.randomUUID().toString(), "Restaurant", "https://api.androidhive.info/images/food/5.jpg"),
+                new InterestModel(UUID.randomUUID().toString(), "Restaurant", "https://api.androidhive.info/images/food/5.jpg"),
+                new InterestModel(UUID.randomUUID().toString(), "Restaurant", "https://api.androidhive.info/images/food/5.jpg"),
+                new InterestModel(UUID.randomUUID().toString(), "Restaurant", "https://api.androidhive.info/images/food/5.jpg"),
+                new InterestModel(UUID.randomUUID().toString(), "Restaurant", "https://api.androidhive.info/images/food/5.jpg"),
+                new InterestModel(UUID.randomUUID().toString(), "Restaurant", "https://api.androidhive.info/images/food/5.jpg"),
+                new InterestModel(UUID.randomUUID().toString(), "Restaurant", "https://api.androidhive.info/images/food/5.jpg"),
+                new InterestModel(UUID.randomUUID().toString(), "Restaurant", "https://api.androidhive.info/images/food/5.jpg"),
                 new InterestModel(UUID.randomUUID().toString(), "Cafe-Resto", "https://api.androidhive.info/images/food/5.jpg")
         );
 

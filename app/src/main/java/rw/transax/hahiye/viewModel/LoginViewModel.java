@@ -7,45 +7,28 @@ import android.support.annotation.NonNull;
 import android.text.TextUtils;
 import android.util.Patterns;
 
+import java.io.InputStream;
 import java.util.Objects;
-import java.util.concurrent.ExecutorService;
-import java.util.concurrent.Executors;
 
-import retrofit2.Call;
-import retrofit2.Callback;
-import retrofit2.Response;
-import rw.transax.hahiye.data.local.dao.UserDao;
-import rw.transax.hahiye.data.local.database.AppDatabase;
-import rw.transax.hahiye.data.remote.ApiInterface;
-import rw.transax.hahiye.model.UserModel;
+import rw.transax.hahiye.BasicApp;
+import rw.transax.hahiye.R;
+import rw.transax.hahiye.data.repository.DataRepository;
 
 public class LoginViewModel extends AndroidViewModel {
-
-    private UserDao userDao;
-    private ExecutorService executorService;
     public final ObservableField<String> username = new ObservableField<>();
     public final ObservableField<String> password = new ObservableField<>();
+    private static InputStream mTestStream;
+    private final DataRepository dataRepository;
 
 
     public LoginViewModel(@NonNull Application application) {
         super(application);
-        //userDao = AppDatabase.getInstance(application).userDao();
-        executorService = Executors.newSingleThreadExecutor();
+        mTestStream = application.getResources().openRawResource(R.raw.server);
+        dataRepository = ((BasicApp) application).getDataRepository();
     }
 
     public void userLogin() {
-        Call<UserModel> networkCall = ApiInterface.Factory.create().getLoginInfo(username.get(), password.get());
-        networkCall.enqueue(new Callback<UserModel>() {
-            @Override
-            public void onResponse(@NonNull Call<UserModel> call, @NonNull Response<UserModel> response) {
-                executorService.execute(() -> userDao.insert(response.body()));
-            }
-
-            @Override
-            public void onFailure(@NonNull Call<UserModel> call, @NonNull Throwable t) {
-                t.printStackTrace();
-            }
-        });
+        dataRepository.loginFromNetwork(username.get(), password.get(), mTestStream);
     }
 
     public int validatingData() {

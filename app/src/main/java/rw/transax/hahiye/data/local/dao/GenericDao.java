@@ -15,7 +15,6 @@ import static android.arch.persistence.room.OnConflictStrategy.REPLACE;
  * @param <T>
  */
 
-
 @Dao
 public interface GenericDao<T> {
 

@@ -1,4 +1,4 @@
-package rw.transax.hahiye.data;
+package rw.transax.hahiye;
 
 import android.app.Application;
 

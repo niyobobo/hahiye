@@ -18,11 +18,12 @@ import rw.transax.hahiye.data.converter.DateConverter;
 import rw.transax.hahiye.data.local.dao.InterestDao;
 import rw.transax.hahiye.data.local.dao.UserDao;
 import rw.transax.hahiye.model.InterestModel;
+import rw.transax.hahiye.model.PlaceModel;
 import rw.transax.hahiye.model.UserModel;
 import rw.transax.hahiye.utils.AppExecutors;
 
 @TypeConverters({DateConverter.class, BooleanConverter.class})
-@Database(entities = {UserModel.class, InterestModel.class}, version = 2)
+@Database(entities = {UserModel.class, InterestModel.class, PlaceModel.class}, version = 1)
 public abstract class AppDatabase extends RoomDatabase {
 
     @VisibleForTesting

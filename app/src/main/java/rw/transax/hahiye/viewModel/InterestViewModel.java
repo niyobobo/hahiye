@@ -8,7 +8,7 @@ import android.support.annotation.NonNull;
 
 import java.util.List;
 
-import rw.transax.hahiye.data.BasicApp;
+import rw.transax.hahiye.BasicApp;
 import rw.transax.hahiye.data.repository.DataRepository;
 import rw.transax.hahiye.model.InterestModel;
 

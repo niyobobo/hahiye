@@ -1,0 +1,132 @@
+syntax = "proto3";
+option go_package = "hahiye";
+option java_package = "rw.transax.hahiye";
+option java_outer_classname = "HahiyeProto";
+option java_multiple_files = true;
+
+// imports
+import "google/protobuf/timestamp.proto";
+import "google/protobuf/empty.proto";
+
+// Hahiye Service
+//
+// Hahiye Service API consists of a multiple service which returns their  messages.
+// We will decouple Individual service in future
+package hahiye;
+
+// Authentication Service
+// 
+// AuthRequest
+message AuthRequest {
+    string username = 1;
+    string password = 2;
+}
+
+// AuthResponse
+message AuthResponse {
+    string token = 1;
+}
+
+// AuthService
+service AuthService {
+    rpc Login (AuthRequest) returns (AuthResponse) {
+    }
+}
+
+// AccountService
+service AccountService {
+    rpc CreateAccount (Account) returns (Account);
+    rpc DeleteAccount (AccountRequest) returns (google.protobuf.Empty);
+    rpc GetAccount (AccountRequest) returns (Account);
+    rpc UpdateAccount (Account) returns (AccountResponse);
+}
+
+// Account represent Account model and its properties
+message Account {
+    string id = 1;
+    string name = 2;
+    string username = 3;
+    string password = 4;
+    string email = 5;
+    string profile_url = 6;
+    bool verified = 7;
+    google.protobuf.Timestamp created_at = 8;
+}
+
+message AccountRequest {
+    string id = 1;
+    string name = 2;
+}
+
+message AccountResponse {
+    string id = 1;
+    string name = 2;
+}
+
+// PlaceService
+service PlaceService {
+    rpc AddPlace (Place) returns (Place);
+    rpc DeletePlace (PlaceRequest) returns (google.protobuf.Empty);
+    rpc GetPlace (PlaceRequest) returns (Place);
+    rpc GetPlaces (google.protobuf.Empty) returns (stream Places);
+    rpc UpdatePlace (Place) returns (Place);
+}
+
+// Place represent Place model and its properties
+message Place {
+    string id = 1;
+    string name = 2;
+    string featured = 3;
+    string website = 4;
+    string tagline = 5;
+    string description = 6;
+    string contact = 7;
+    bool verified = 9;
+    Location location = 10;
+    string amenity = 11;
+    google.protobuf.Timestamp created_at = 8;
+}
+
+// Location message
+message Location {
+    string latitude = 1;
+    string longitude = 2;
+}
+
+message Places {
+    repeated Place places = 1;
+}
+
+message PlaceRequest {
+    string id = 1;
+    string name = 2;
+}
+
+// InterestService
+service InterestService {
+    rpc AddInterest (Interest) returns (Interest);
+    rpc Removeinterest (InterestRequest) returns (google.protobuf.Empty);
+    rpc GetInterest (InterestRequest) returns (Interest);
+    rpc GetInterests (google.protobuf.Empty) returns (stream Interests);
+    rpc UpdateInterest (Interest) returns (InterestResponse);
+}
+
+
+message Interest {
+    string id = 1;
+    string name = 2;
+}
+
+message Interests {
+    repeated Interest interests = 1;
+}
+
+message InterestRequest {
+    string id = 1;
+    string name = 2;
+}
+
+message InterestResponse {
+    string id = 1;
+    string name = 2;
+}

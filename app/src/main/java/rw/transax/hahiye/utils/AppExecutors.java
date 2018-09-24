@@ -20,15 +20,10 @@ public class AppExecutors {
     private Executor mNetworkIO;
     private Executor mMainThread;
 
-    private AppExecutors(Executor mDiskIO, Executor mNetworkIO, Executor mMainThread) {
-        this.mDiskIO = mDiskIO;
-        this.mNetworkIO = mNetworkIO;
-        this.mMainThread = mMainThread;
-    }
-
     public AppExecutors() {
-        this(Executors.newSingleThreadExecutor(), Executors.newFixedThreadPool(5),
-                new MainThreadExecutor());
+        this.mDiskIO = Executors.newSingleThreadExecutor();
+        this.mNetworkIO = Executors.newFixedThreadPool(5);
+        this.mMainThread = new MainThreadExecutor();
     }
 
     public Executor getDiskIO() {
