@@ -16,7 +16,7 @@
 
 package rw.transax.hahiye.utils;
 
-import android.support.annotation.Nullable;
+import androidx.annotation.Nullable;
 
 import java.io.InputStream;
 import java.security.KeyStore;

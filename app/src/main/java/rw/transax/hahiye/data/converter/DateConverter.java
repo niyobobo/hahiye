@@ -1,6 +1,6 @@
 package rw.transax.hahiye.data.converter;
 
-import android.arch.persistence.room.TypeConverter;
+import androidx.room.TypeConverter;
 
 import java.util.Date;
 

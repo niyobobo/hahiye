@@ -1,9 +1,9 @@
 package rw.transax.hahiye.viewModel;
 
 import android.app.Application;
-import android.arch.lifecycle.AndroidViewModel;
-import android.databinding.ObservableField;
-import android.support.annotation.NonNull;
+import androidx.lifecycle.AndroidViewModel;
+import androidx.databinding.ObservableField;
+import androidx.annotation.NonNull;
 import android.text.TextUtils;
 import android.util.Patterns;
 

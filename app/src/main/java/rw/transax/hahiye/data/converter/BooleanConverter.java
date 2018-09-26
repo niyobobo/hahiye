@@ -1,6 +1,6 @@
 package rw.transax.hahiye.data.converter;
 
-import android.arch.persistence.room.TypeConverter;
+import androidx.room.TypeConverter;
 
 /**
  * Note: Room database doesn't support boolean dataType so we have to

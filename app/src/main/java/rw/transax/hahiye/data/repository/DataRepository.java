@@ -1,7 +1,7 @@
 package rw.transax.hahiye.data.repository;
 
-import android.arch.lifecycle.LiveData;
-import android.arch.lifecycle.MediatorLiveData;
+import androidx.lifecycle.LiveData;
+import androidx.lifecycle.MediatorLiveData;
 import android.util.Log;
 
 import java.io.InputStream;
@@ -26,7 +26,7 @@ import rw.transax.hahiye.utils.AppExecutors;
 import rw.transax.hahiye.utils.CustomOkHttpChannelBuilder;
 import rw.transax.hahiye.utils.JwtCallCredential;
 
-import static android.support.constraint.Constraints.TAG;
+import static androidx.constraintlayout.Constraints.TAG;
 
 public class DataRepository {
 
