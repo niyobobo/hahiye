@@ -92,7 +92,7 @@
                             android:padding="@dimen/big_margin"
                             app:srcCompat="@drawable/ic_people" />
 
-                        <EditText
+                        <androidx.appcompat.widget.AppCompatEditText
                             android:layout_width="match_parent"
                             android:layout_height="match_parent"
                             android:background="@null"
@@ -120,7 +120,7 @@
                             android:padding="@dimen/big_margin"
                             app:srcCompat="@drawable/ic_people" />
 
-                        <EditText
+                        <androidx.appcompat.widget.AppCompatEditText
                             android:layout_width="match_parent"
                             android:layout_height="match_parent"
                             android:background="@null"
@@ -148,7 +148,7 @@
                             android:padding="@dimen/big_margin"
                             app:srcCompat="@drawable/ic_email" />
 
-                        <EditText
+                        <androidx.appcompat.widget.AppCompatEditText
                             android:layout_width="match_parent"
                             android:layout_height="match_parent"
                             android:background="@null"

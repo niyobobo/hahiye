@@ -1,17 +1,18 @@
 package rw.transax.hahiye.ui.activity;
 
-import androidx.lifecycle.ViewModelProviders;
 import android.os.Bundle;
-import com.google.android.material.button.MaterialButton;
-import androidx.appcompat.app.AppCompatActivity;
-import androidx.recyclerview.widget.GridLayoutManager;
-import androidx.recyclerview.widget.RecyclerView;
-import androidx.appcompat.widget.Toolbar;
 import android.view.MenuItem;
 import android.view.View;
 
+import com.google.android.material.button.MaterialButton;
+
 import java.util.Objects;
 
+import androidx.appcompat.app.AppCompatActivity;
+import androidx.appcompat.widget.Toolbar;
+import androidx.lifecycle.ViewModelProviders;
+import androidx.recyclerview.widget.GridLayoutManager;
+import androidx.recyclerview.widget.RecyclerView;
 import rw.transax.hahiye.R;
 import rw.transax.hahiye.model.InterestModel;
 import rw.transax.hahiye.ui.adapter.InterestAdapter;

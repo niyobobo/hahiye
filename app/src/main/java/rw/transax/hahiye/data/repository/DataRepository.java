@@ -1,7 +1,5 @@
 package rw.transax.hahiye.data.repository;
 
-import androidx.lifecycle.LiveData;
-import androidx.lifecycle.MediatorLiveData;
 import android.util.Log;
 
 import java.io.InputStream;
@@ -10,6 +8,8 @@ import java.text.SimpleDateFormat;
 import java.util.Date;
 import java.util.List;
 
+import androidx.lifecycle.LiveData;
+import androidx.lifecycle.MediatorLiveData;
 import io.grpc.ManagedChannel;
 import io.grpc.StatusRuntimeException;
 import rw.transax.hahiye.Account;
@@ -26,7 +26,7 @@ import rw.transax.hahiye.utils.AppExecutors;
 import rw.transax.hahiye.utils.CustomOkHttpChannelBuilder;
 import rw.transax.hahiye.utils.JwtCallCredential;
 
-import static androidx.constraintlayout.Constraints.TAG;
+import static androidx.constraintlayout.widget.Constraints.TAG;
 
 public class DataRepository {
 

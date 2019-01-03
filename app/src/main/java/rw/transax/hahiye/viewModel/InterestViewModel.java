@@ -1,13 +1,13 @@
 package rw.transax.hahiye.viewModel;
 
 import android.app.Application;
-import androidx.lifecycle.AndroidViewModel;
-import androidx.lifecycle.LiveData;
-import androidx.lifecycle.MediatorLiveData;
-import androidx.annotation.NonNull;
 
 import java.util.List;
 
+import androidx.annotation.NonNull;
+import androidx.lifecycle.AndroidViewModel;
+import androidx.lifecycle.LiveData;
+import androidx.lifecycle.MediatorLiveData;
 import rw.transax.hahiye.BasicApp;
 import rw.transax.hahiye.data.repository.DataRepository;
 import rw.transax.hahiye.model.InterestModel;

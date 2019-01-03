@@ -90,8 +90,9 @@ public class InterestAdapter extends ListAdapter<InterestModel, InterestAdapter.
     private static final DiffUtil.ItemCallback<InterestModel> DIFF_CALLBACK = new DiffUtil.ItemCallback<InterestModel>() {
 
         @Override
-        public boolean areItemsTheSame(@NonNull InterestModel interestModel, @NonNull InterestModel t1) {
-            return interestModel.getId() == t1.getId();
+        public boolean areItemsTheSame(@NonNull InterestModel oldItem, @NonNull InterestModel newItem) {
+            return oldItem.getId() == newItem.getId()
+                    && oldItem.getUid().equals(newItem.getUid());
         }
 
         @Override

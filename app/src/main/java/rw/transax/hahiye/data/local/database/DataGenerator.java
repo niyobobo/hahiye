@@ -6,9 +6,9 @@ import java.util.UUID;
 
 import rw.transax.hahiye.model.InterestModel;
 
-public class DataGenerator {
+class DataGenerator {
 
-    public static List<InterestModel> SAMPLE_DATA() {
+    static List<InterestModel> SAMPLE_DATA() {
         return Arrays.asList(
                 new InterestModel(UUID.randomUUID().toString(), "Hotel", "https://api.androidhive.info/images/food/5.jpg"),
                 new InterestModel(UUID.randomUUID().toString(), "Pub", "https://api.androidhive.info/images/food/5.jpg"),

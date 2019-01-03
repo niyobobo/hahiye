@@ -1,12 +1,11 @@
 package rw.transax.hahiye.data.local.dao;
 
+import java.util.List;
+
 import androidx.lifecycle.LiveData;
 import androidx.room.Dao;
 import androidx.room.Insert;
 import androidx.room.Query;
-
-import java.util.List;
-
 import rw.transax.hahiye.model.InterestModel;
 
 import static androidx.room.OnConflictStrategy.REPLACE;

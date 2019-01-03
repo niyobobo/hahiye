@@ -23,7 +23,7 @@ import rw.transax.hahiye.model.UserModel;
 import rw.transax.hahiye.utils.AppExecutors;
 
 @TypeConverters({DateConverter.class, BooleanConverter.class})
-@Database(entities = {UserModel.class, InterestModel.class, PlaceModel.class}, version = 1)
+@Database(entities = {UserModel.class, InterestModel.class, PlaceModel.class}, version = 2)
 public abstract class AppDatabase extends RoomDatabase {
 
     @VisibleForTesting
