@@ -9,6 +9,7 @@
     <color name="colorView">#99a3a0a0</color>
     <color name="colorParticles">#33ffffff</color>
     <color name="colorTransparent">#00ffffff</color>
+    <color name="colorChipNotSelected">#ffffff</color>
 
     <array name="dots_active">
         <item>@color/colorButtonPressed</item>

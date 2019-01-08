@@ -1,12 +1,12 @@
 package rw.transax.hahiye.ui.activity;
 
-import androidx.lifecycle.ViewModelProviders;
-import androidx.databinding.DataBindingUtil;
 import android.os.Bundle;
-import androidx.annotation.Nullable;
-import androidx.appcompat.app.AppCompatActivity;
 import android.widget.Toast;
 
+import androidx.annotation.Nullable;
+import androidx.appcompat.app.AppCompatActivity;
+import androidx.databinding.DataBindingUtil;
+import androidx.lifecycle.ViewModelProviders;
 import rw.transax.hahiye.R;
 import rw.transax.hahiye.callback.Presenter;
 import rw.transax.hahiye.databinding.ActivityLoginBinding;
@@ -58,9 +58,7 @@ public class LoginActivity extends AppCompatActivity implements Presenter {
 
     @Override
     public void forgetPassword() {
-        /*
-         * Start activity to request new password
-         */
+        /* Start activity to request new password  */
         Toast.makeText(this, "Forget password", Toast.LENGTH_SHORT).show();
     }
 }

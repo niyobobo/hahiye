@@ -1,9 +1,10 @@
 package rw.transax.hahiye.model;
 
+import androidx.databinding.BaseObservable;
 import androidx.databinding.Bindable;
 import rw.transax.hahiye.BR;
 
-public class LoginModel {
+public class LoginModel extends BaseObservable {
 
     private String userEmail;
     private String userPassword;
@@ -13,7 +14,6 @@ public class LoginModel {
         return userEmail;
     }
 
-    @Bindable
     public void setUserEmail(String userEmail) {
         this.userEmail = userEmail;
         notifyPropertyChanged(BR.userEmail);
@@ -26,5 +26,6 @@ public class LoginModel {
 
     public void setUserPassword(String userPassword) {
         this.userPassword = userPassword;
+        notifyPropertyChanged(BR.userPassword);
     }
 }

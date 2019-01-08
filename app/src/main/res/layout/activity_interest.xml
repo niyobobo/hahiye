@@ -10,57 +10,51 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:background="@color/colorTransparent"
-        android:padding="@dimen/small_margin"
-        app:elevation="0dp">
+        app:elevation="5dp">
 
         <androidx.appcompat.widget.Toolbar
             android:id="@+id/toolbar"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toTopOf="parent">
+            app:layout_scrollFlags="scroll|enterAlways">
 
             <LinearLayout
                 android:layout_width="match_parent"
                 android:layout_height="match_parent"
+                android:gravity="center_vertical"
                 android:orientation="horizontal">
 
                 <TextView
+                    android:id="@+id/next_page"
                     android:layout_width="0dp"
                     android:layout_height="wrap_content"
                     android:layout_weight="1"
-                    android:padding="@dimen/small_margin"
-                    android:text="@string/select_at_least_5_interest_to_continue"
+                    android:text="@string/select_at_least_5_interest"
                     android:textColor="@color/colorBlack"
                     android:textSize="24sp"
                     android:textStyle="bold" />
 
-                <com.google.android.material.button.MaterialButton
+                <androidx.appcompat.widget.AppCompatImageView
                     android:id="@+id/action_button"
-                    style="?android:attr/borderlessButtonStyle"
                     android:layout_width="wrap_content"
-                    android:layout_height="match_parent"
-                    android:text="@string/next"
-                    android:textAllCaps="false"
-                    android:textColor="@color/colorWhite"
-                    android:textSize="@dimen/text_size_extra"
-                    android:visibility="visible"
-                    app:backgroundTint="@color/colorAccent"
-                    app:cornerRadius="@dimen/big_margin"
-                    app:layout_constraintBottom_toTopOf="@+id/btn_signUp"
-                    app:layout_constraintEnd_toEndOf="parent"
-                    app:layout_constraintStart_toStartOf="parent"
-                    app:rippleColor="@color/colorWhite" />
+                    android:layout_height="wrap_content"
+                    android:padding="@dimen/big_margin"
+                    app:srcCompat="@drawable/ic_next"
+                    app:tint="@color/colorPrimary" />
             </LinearLayout>
         </androidx.appcompat.widget.Toolbar>
     </com.google.android.material.appbar.AppBarLayout>
 
-    <androidx.recyclerview.widget.RecyclerView
-        android:id="@+id/recycle_interests"
+    <androidx.core.widget.NestedScrollView
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        android:clipToPadding="false"
-        android:padding="@dimen/small_margin"
-        app:layout_behavior="@string/appbar_scrolling_view_behavior" />
+        android:scrollbars="none"
+        app:layout_behavior="@string/appbar_scrolling_view_behavior">
+
+        <com.google.android.material.chip.ChipGroup
+            android:id="@+id/chip_group"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            app:singleSelection="false" />
+    </androidx.core.widget.NestedScrollView>
 </androidx.coordinatorlayout.widget.CoordinatorLayout>

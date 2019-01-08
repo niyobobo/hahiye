@@ -16,13 +16,10 @@ import com.bumptech.glide.Glide;
 import com.makeramen.roundedimageview.RoundedImageView;
 
 import rw.transax.hahiye.R;
+import rw.transax.hahiye.callback.InterestSelected;
 import rw.transax.hahiye.model.InterestModel;
 
 public class InterestAdapter extends ListAdapter<InterestModel, InterestAdapter.ViewHolder> {
-
-    public interface InterestSelected {
-        void onInterestSelected(InterestModel interest);
-    }
 
     private Context context;
     private InterestSelected interestSelected;

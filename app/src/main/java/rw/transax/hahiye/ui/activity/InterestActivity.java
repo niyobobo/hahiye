@@ -1,50 +1,51 @@
 package rw.transax.hahiye.ui.activity;
 
+import android.content.Intent;
 import android.os.Bundle;
+import android.util.TypedValue;
 import android.view.MenuItem;
 import android.view.View;
+import android.widget.ImageView;
+import android.widget.TextView;
 
-import com.google.android.material.button.MaterialButton;
+import com.google.android.material.chip.Chip;
+import com.google.android.material.chip.ChipDrawable;
+import com.google.android.material.chip.ChipGroup;
 
+import java.util.List;
 import java.util.Objects;
 
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.appcompat.widget.Toolbar;
 import androidx.lifecycle.ViewModelProviders;
-import androidx.recyclerview.widget.GridLayoutManager;
-import androidx.recyclerview.widget.RecyclerView;
 import rw.transax.hahiye.R;
+import rw.transax.hahiye.callback.InterestSelected;
 import rw.transax.hahiye.model.InterestModel;
-import rw.transax.hahiye.ui.adapter.InterestAdapter;
-import rw.transax.hahiye.utils.ItemOffsetDecoration;
 import rw.transax.hahiye.viewModel.InterestViewModel;
 
 public class InterestActivity extends AppCompatActivity implements
-        InterestAdapter.InterestSelected,
-        View.OnClickListener {
+        InterestSelected, View.OnClickListener {
 
-    private InterestAdapter interestAdapter;
     private InterestViewModel viewModel;
-    private MaterialButton mActionButton;
-    private RecyclerView mRecyclerView;
+    private ImageView mActionButton;
+    private TextView mContinue;
+    private ChipGroup entryChipGroup;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_interest);
         init();
-
         viewModel = ViewModelProviders.of(this).get(InterestViewModel.class);
+        viewModel.getObservableInterests().observe(this, list -> {
+            if (list != null) displayInterestOnScreen(list);
+        });
 
-        viewModel.getObservableInterests().observe(this, list ->
-                interestAdapter.submitList(list));
-
-        viewModel.getTotalInterest().observe(this, integer ->
-                mActionButton.setVisibility(integer > 2 ? View.VISIBLE : View.GONE));
-
-        interestAdapter = new InterestAdapter(this, this);
-        interestAdapter.setHasStableIds(true);
-        mRecyclerView.setAdapter(interestAdapter);
+        viewModel.getTotalInterest().observe(this, integer -> {
+            mActionButton.setVisibility(integer > 4 ? View.VISIBLE : View.GONE);
+            mContinue.setText(integer > 4 ? getString(R.string.max_chip_selected) :
+                    getString(R.string.select_at_least_5_interest));
+        });
     }
 
     private void init() {
@@ -52,14 +53,35 @@ public class InterestActivity extends AppCompatActivity implements
         setSupportActionBar(toolbar);
         Objects.requireNonNull(getSupportActionBar()).setTitle(null);
         Objects.requireNonNull(getSupportActionBar()).setDisplayHomeAsUpEnabled(true);
-        ItemOffsetDecoration decoration = new ItemOffsetDecoration(this, R.dimen.small_margin);
-
+        mContinue = findViewById(R.id.next_page);
+        entryChipGroup = findViewById(R.id.chip_group);
         mActionButton = findViewById(R.id.action_button);
         mActionButton.setOnClickListener(this);
-        mRecyclerView = findViewById(R.id.recycle_interests);
-        mRecyclerView.setLayoutManager(new GridLayoutManager(this, 3));
-        mRecyclerView.setHasFixedSize(true);
-        mRecyclerView.addItemDecoration(decoration);
+    }
+
+    private void displayInterestOnScreen(List<InterestModel> interestList) {
+        entryChipGroup.removeAllViews();
+        for (InterestModel interest : interestList) {
+            final Chip customChip = newChip(interest.getName());
+            if (interest.isFollowed()) customChip.setChecked(true);
+            customChip.setOnClickListener(v -> this.onInterestSelected(interest));
+            entryChipGroup.addView(customChip);
+        }
+    }
+
+    private Chip newChip(String text) {
+        final Chip chip = new Chip(this);
+        int paddingDp = (int) TypedValue.applyDimension(
+                TypedValue.COMPLEX_UNIT_DIP, 11, getResources().getDisplayMetrics());
+        chip.setChipDrawable(ChipDrawable.createFromResource(this, R.xml.chip));
+        chip.setPadding(paddingDp, paddingDp, paddingDp, paddingDp);
+        chip.setText(text);
+        chip.setCloseIconVisible(false);
+        chip.setChipStrokeColorResource(R.color.colorButtonPressed);
+        chip.setChipStrokeWidth(1);
+        chip.setRippleColorResource(R.color.colorWhite);
+        chip.setChipBackgroundColorResource(R.color.color_chip_state);
+        return chip;
     }
 
     @Override
@@ -82,8 +104,7 @@ public class InterestActivity extends AppCompatActivity implements
     public void onClick(View v) {
         switch (v.getId()) {
             case R.id.action_button:
-                break;
-            default:
+                startActivity(new Intent(this, HomeActivity.class));
                 break;
         }
     }

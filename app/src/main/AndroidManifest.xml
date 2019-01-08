@@ -33,7 +33,7 @@
         <activity
             android:name=".ui.activity.InterestActivity"
             android:theme="@style/AppTheme.NoActionBar" />
-        <activity android:name=".ui.activity.FeedsActivity"></activity>
+        <activity android:name=".ui.activity.HomeActivity"></activity>
     </application>
 
 </manifest>
