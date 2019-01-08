@@ -15,45 +15,63 @@ import rw.transax.hahiye.ui.fragment.SearchFragment;
 
 public class HomeActivity extends AppCompatActivity {
 
-    @Override
-    protected void onCreate(Bundle savedInstanceState) {
-        super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_home);
-        BottomNavigationView navigationView = findViewById(R.id.home_navigation);
-        navigationView.setOnNavigationItemSelectedListener(itemSelectedListener);
-    }
-
+    private final String SELECTED_FRAGMENT = "SELECTED_FRAGMENT";
+    private Fragment mFragment;
     /**
      * Creating instance of BottomNavigationView.OnNavigationItemSelectedListener and
      * set it to OnNavigationItemSelectedListener method as parameter
      */
     private BottomNavigationView.OnNavigationItemSelectedListener itemSelectedListener =
             menuItem -> {
-                Fragment fragment = null;
                 switch (menuItem.getItemId()) {
                     case R.id.menu_feed:
-                        fragment = new FeedsFragment();
+                        mFragment = new FeedsFragment();
                         break;
                     case R.id.menu_search:
-                        fragment = new SearchFragment();
+                        mFragment = new SearchFragment();
                         break;
                     case R.id.menu_home:
-                        fragment = new HomeFragment();
+                        mFragment = new HomeFragment();
                         break;
                     case R.id.menu_places:
-                        fragment = new PlacesFragment();
+                        mFragment = new PlacesFragment();
                         break;
                     case R.id.menu_account:
-                        fragment = new ProfileFragment();
+                        mFragment = new ProfileFragment();
                         break;
                 }
-                return fragmentTransaction(fragment);
+                return fragmentTransaction(mFragment);
             };
 
+    @Override
+    protected void onCreate(Bundle savedInstanceState) {
+        super.onCreate(savedInstanceState);
+        setContentView(R.layout.activity_home);
+        BottomNavigationView navigationView = findViewById(R.id.home_navigation);
+        navigationView.setOnNavigationItemSelectedListener(itemSelectedListener);
+
+        if (savedInstanceState != null)
+            mFragment = getSupportFragmentManager().getFragment(savedInstanceState, SELECTED_FRAGMENT);
+
+        fragmentTransaction(mFragment != null ? mFragment : new FeedsFragment());
+    }
+
     /**
-     *  Make fragment transaction when a menu item on BottomNavigationView is clicked
-     * @param fragment  Fragment need to be loaded on the screen
-     * @return          Return true when fragment loaded otherwise false
+     * Save state of selected fragment so when activity restarted
+     * the instance will be restored.
+     */
+
+    @Override
+    protected void onSaveInstanceState(Bundle outState) {
+        super.onSaveInstanceState(outState);
+        getSupportFragmentManager().putFragment(outState, SELECTED_FRAGMENT, mFragment);
+    }
+
+    /**
+     * Make mFragment transaction when a menu item on BottomNavigationView is clicked
+     *
+     * @param fragment Fragment need to be loaded on the screen
+     * @return Return true when mFragment loaded otherwise false
      */
     private boolean fragmentTransaction(Fragment fragment) {
         if (fragment != null) {
