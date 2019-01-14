@@ -1,0 +1,96 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:padding="@dimen/big_margin">
+
+    <de.hdodenhof.circleimageview.CircleImageView
+        android:id="@+id/img_feed_posterImg"
+        android:layout_width="@dimen/edit_text_size"
+        android:layout_height="@dimen/edit_text_size"
+        android:src="@mipmap/photo_passport"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
+
+    <TextView
+        android:id="@+id/txt_feed_createdAt"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="@dimen/small_margin"
+        android:text="Jan 5"
+        android:textAppearance="@style/TextAppearance.AppCompat.Headline"
+        android:textSize="12sp"
+        app:layout_constraintEnd_toEndOf="@+id/img_feed_posterImg"
+        app:layout_constraintStart_toStartOf="@+id/img_feed_posterImg"
+        app:layout_constraintTop_toBottomOf="@+id/img_feed_posterImg" />
+
+    <TextView
+        android:id="@+id/txt_feed_posterImg"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="16dp"
+        android:layout_marginLeft="16dp"
+        android:ellipsize="end"
+        android:fontFamily="sans-serif-condensed"
+        android:maxLines="1"
+        android:text="TextView"
+        android:textAppearance="@style/TextAppearance.AppCompat.Subhead"
+        android:textSize="16sp"
+        android:textStyle="bold"
+        app:layout_constraintEnd_toStartOf="@+id/img_feed_options"
+        app:layout_constraintStart_toEndOf="@+id/img_feed_posterImg"
+        app:layout_constraintTop_toTopOf="@+id/img_feed_posterImg"
+        tools:text="@tools:sample/full_names" />
+
+    <androidx.appcompat.widget.AppCompatImageView
+        android:id="@+id/img_feed_options"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintTop_toTopOf="@+id/txt_feed_posterImg"
+        app:srcCompat="@drawable/ic_option_load" />
+
+    <TextView
+        android:id="@+id/txt_feed_content"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:text="I won't post the reversal animation so this article doesn't get enormous, but I am sure you can figure it out."
+        android:textAllCaps="false"
+        android:textAppearance="@style/TextAppearance.AppCompat"
+        app:layout_constraintEnd_toEndOf="@+id/img_feed_options"
+        app:layout_constraintStart_toStartOf="@+id/txt_feed_posterImg"
+        app:layout_constraintTop_toBottomOf="@+id/img_feed_options" />
+
+    <ProgressBar
+        android:id="@+id/feed_hitLevel"
+        style="?android:attr/progressBarStyleHorizontal"
+        android:layout_width="0dp"
+        android:layout_height="@dimen/big_margin"
+        android:max="100"
+        android:progressDrawable="@drawable/progress_style"
+        app:layout_constraintBottom_toBottomOf="@+id/btn_feed_like"
+        app:layout_constraintEnd_toStartOf="@+id/btn_feed_like"
+        app:layout_constraintStart_toStartOf="@+id/txt_feed_content"
+        app:layout_constraintTop_toTopOf="@+id/btn_feed_like" />
+
+    <androidx.appcompat.widget.AppCompatImageView
+        android:id="@+id/btn_feed_like"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        app:layout_constraintBottom_toBottomOf="@+id/btn_feed_comment"
+        app:layout_constraintEnd_toStartOf="@+id/btn_feed_comment"
+        app:layout_constraintTop_toTopOf="@+id/btn_feed_comment"
+        app:srcCompat="@drawable/ic_flame" />
+
+    <androidx.appcompat.widget.AppCompatImageView
+        android:id="@+id/btn_feed_comment"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="8dp"
+        app:layout_constraintEnd_toEndOf="@+id/txt_feed_content"
+        app:layout_constraintTop_toBottomOf="@+id/txt_feed_content"
+        app:srcCompat="@drawable/ic_flame" />
+
+</androidx.constraintlayout.widget.ConstraintLayout>

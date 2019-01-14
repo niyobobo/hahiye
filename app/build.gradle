@@ -118,7 +118,7 @@ dependencies {
     /* workaround for https://github.com/google/protobuf/issues/1889 */
     protobuf 'com.google.protobuf:protobuf-java:3.4.0'
 
-    implementation 'com.google.android.gms:play-services-base:16.0.1'
+    implementation 'com.google.android.gms:play-services-base:16.1.0'
     implementation('com.google.auth:google-auth-library-oauth2-http:0.9.0') {
         exclude group: 'org.apache.httpcomponents', module: 'httpclient'
     }
@@ -130,6 +130,7 @@ dependencies {
     implementation 'com.fede987:status-bar-alert:1.0.2'
     implementation 'com.makeramen:roundedimageview:2.3.0'
     implementation 'androidx.multidex:multidex:2.0.1'
+    implementation 'de.hdodenhof:circleimageview:3.0.0'
 
     testImplementation 'junit:junit:4.12'
     androidTestImplementation 'androidx.test:runner:1.1.1'
