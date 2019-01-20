@@ -2,28 +2,28 @@
 <menu xmlns:android="http://schemas.android.com/apk/res/android">
     <item
         android:id="@+id/menu_feed"
-        android:icon="@drawable/ic_feeds"
+        android:icon="@drawable/ic_menu_feeds"
         android:title="Feeds" />
 
     <item
         android:id="@+id/menu_search"
-        android:icon="@drawable/ic_search_place"
+        android:icon="@drawable/ic_menu_search"
         android:title="Search" />
 
     <item
         android:id="@+id/menu_home"
-        android:icon="@drawable/ic_flame"
+        android:icon="@drawable/ic_menu_flame"
         android:title="Home"
         />
 
     <item
         android:id="@+id/menu_places"
-        android:icon="@drawable/ic_location"
+        android:icon="@drawable/ic_menu_location"
         android:title="Places" />
 
     <item
         android:id="@+id/menu_account"
-        android:icon="@drawable/ic_profile"
+        android:icon="@drawable/ic_menu_profile"
         android:title="Account" />
 
 </menu>

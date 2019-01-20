@@ -2,7 +2,7 @@ package rw.transax.hahiye.ui.adapter;
 
 import android.annotation.SuppressLint;
 import android.content.Context;
-import android.util.Log;
+import android.os.Handler;
 import android.view.LayoutInflater;
 import android.view.MotionEvent;
 import android.view.View;
@@ -45,11 +45,11 @@ public class FeedsAdapter extends RecyclerView.Adapter<FeedsAdapter.FeedsViewHol
     }
 
     static class FeedsViewHolder extends RecyclerView.ViewHolder {
-        private ProgressBar feed_hitLevel;
-        private ImageView btn_like;
         private int progressStatus = 0;
         private Boolean running = true;
-        private android.os.Handler handler = new android.os.Handler();
+        private Handler handler = new Handler();
+        private ProgressBar feed_hitLevel;
+        private ImageView btn_like;
 
         FeedsViewHolder(@NonNull View itemView) {
             super(itemView);

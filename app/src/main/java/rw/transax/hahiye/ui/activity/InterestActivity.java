@@ -80,7 +80,7 @@ public class InterestActivity extends AppCompatActivity implements
         chip.setChipStrokeColorResource(R.color.colorButtonPressed);
         chip.setChipStrokeWidth(1);
         chip.setRippleColorResource(R.color.colorWhite);
-        chip.setChipBackgroundColorResource(R.color.color_chip_state);
+        chip.setChipBackgroundColorResource(R.color.chip_selected);
         return chip;
     }
 

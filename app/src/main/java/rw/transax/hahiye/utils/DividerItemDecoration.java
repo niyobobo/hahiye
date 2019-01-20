@@ -5,19 +5,21 @@ import android.graphics.Canvas;
 import android.graphics.drawable.Drawable;
 import android.view.View;
 
+import androidx.annotation.NonNull;
 import androidx.core.content.ContextCompat;
 import androidx.recyclerview.widget.RecyclerView;
 import rw.transax.hahiye.R;
 
-public class SimpleDividerItemDecoration extends RecyclerView.ItemDecoration {
+public class DividerItemDecoration extends RecyclerView.ItemDecoration {
     private Drawable mDivider;
 
-    public SimpleDividerItemDecoration(Context context) {
+    public DividerItemDecoration(Context context) {
         mDivider = ContextCompat.getDrawable(context, R.drawable.item_feed_separator);
     }
 
     @Override
-    public void onDrawOver(Canvas c, RecyclerView parent, RecyclerView.State state) {
+    public void onDrawOver(@NonNull Canvas c, @NonNull RecyclerView parent,
+                           @NonNull RecyclerView.State state) {
         int left = parent.getPaddingLeft();
         int right = parent.getWidth() - parent.getPaddingRight();
 
