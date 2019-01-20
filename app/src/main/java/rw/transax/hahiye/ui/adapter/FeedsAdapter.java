@@ -1,87 +1,97 @@
 package rw.transax.hahiye.ui.adapter;
 
-import android.annotation.SuppressLint;
 import android.content.Context;
-import android.os.Handler;
 import android.view.LayoutInflater;
-import android.view.MotionEvent;
 import android.view.View;
 import android.view.ViewGroup;
-import android.widget.ImageView;
-import android.widget.ProgressBar;
+
+import java.util.ArrayList;
+import java.util.List;
 
 import androidx.annotation.NonNull;
 import androidx.recyclerview.widget.RecyclerView;
 import rw.transax.hahiye.R;
+import rw.transax.hahiye.callback.FeedComment;
+import rw.transax.hahiye.model.FeedsModel;
+import rw.transax.hahiye.ui.viewHolder.BaseViewHolder;
+import rw.transax.hahiye.ui.viewHolder.CreatePostTypeViewHolder;
+import rw.transax.hahiye.ui.viewHolder.ImageTypeViewHolder;
+import rw.transax.hahiye.ui.viewHolder.TextTypeViewHolder;
 
-public class FeedsAdapter extends RecyclerView.Adapter<FeedsAdapter.FeedsViewHolder> {
+public class FeedsAdapter extends RecyclerView.Adapter<BaseViewHolder<FeedsModel>> {
+
+    private static final int TEXT_TYPE = 0;
+    private static final int IMAGE_TYPE = 1;
+    private static final int CREATE_POST_TYPE = 2;
+
+    private List<FeedsModel> dataSet;
+    private FeedComment feedComment;
     private Context mContext;
 
-    public FeedsAdapter(Context mContext) {
-        this.mContext = mContext;
+    public FeedsAdapter(Context context, FeedComment feedComment) {
+        mContext = context;
+        this.feedComment = feedComment;
     }
 
     @NonNull
     @Override
-    public FeedsViewHolder onCreateViewHolder(@NonNull ViewGroup parent, int viewType) {
+    public BaseViewHolder<FeedsModel> onCreateViewHolder(@NonNull ViewGroup parent, int viewType) {
         LayoutInflater layoutInflater = LayoutInflater.from(parent.getContext());
-        View view = layoutInflater.inflate(R.layout.item_feed_text, parent, false);
-        return new FeedsViewHolder(view);
+        View view;
+        switch (viewType) {
+
+            case TEXT_TYPE: {
+                view = layoutInflater.inflate(R.layout.item_feed_text, parent, false);
+                return new TextTypeViewHolder(view, dataSet, mContext, feedComment);
+            }
+            case IMAGE_TYPE: {
+                view = layoutInflater.inflate(R.layout.item_feed_text, parent, false);
+                return new ImageTypeViewHolder(view);
+            }
+            case CREATE_POST_TYPE: {
+                view = layoutInflater.inflate(R.layout.item_create_post, parent, false);
+                return new CreatePostTypeViewHolder(view);
+            }
+            default:
+                throw new IllegalArgumentException("Invalid view type");
+        }
     }
 
     @Override
-    public void onBindViewHolder(@NonNull FeedsViewHolder holder, int position) {
-        holder.bindView();
+    public void onBindViewHolder(@NonNull BaseViewHolder<FeedsModel> holder, int position) {
+        FeedsModel model = dataSet.get(position);
+        holder.bind(model);
     }
 
-    @Override
-    public int getItemViewType(int position) {
-        return super.getItemViewType(position);
+    public void add(List<FeedsModel> feedData) {
+        if (dataSet == null) dataSet = new ArrayList<>();
+        dataSet.clear();
+        dataSet.addAll(feedData);
+        notifyDataSetChanged();
+    }
+
+    public void createFeed(FeedsModel model) {
+        dataSet.add(3, model);
+        notifyItemInserted(3);
     }
 
     @Override
     public int getItemCount() {
-        return 10;
+        return dataSet != null ? dataSet.size() : 0;
     }
 
-    static class FeedsViewHolder extends RecyclerView.ViewHolder {
-        private int progressStatus = 0;
-        private Boolean running = true;
-        private Handler handler = new Handler();
-        private ProgressBar feed_hitLevel;
-        private ImageView btn_like;
-
-        FeedsViewHolder(@NonNull View itemView) {
-            super(itemView);
-            feed_hitLevel = itemView.findViewById(R.id.feed_hitLevel);
-            btn_like = itemView.findViewById(R.id.btn_feed_like);
-        }
-
-        @SuppressLint("ClickableViewAccessibility")
-        void bindView() {
-            btn_like.setOnTouchListener((v, event) -> {
-                if (event.getAction() == MotionEvent.ACTION_DOWN) {
-                    new Thread(() -> {
-                        while (progressStatus < 100 && running) {
-                            progressStatus++;
-                            /*
-                             * Update progressBar value
-                             */
-                            handler.post(() -> feed_hitLevel.setProgress(progressStatus));
-                            try {
-                                // add delay of 20 milliseconds.
-                                Thread.sleep(20);
-                            } catch (InterruptedException e) {
-                                e.printStackTrace();
-                            }
-                        }
-                    }).start();
-                    return true;
-                } else if (event.getAction() == MotionEvent.ACTION_UP) {
-                    running = false;
-                }
-                return false;
-            });
+    @Override
+    public int getItemViewType(int position) {
+        FeedsModel data = dataSet.get(position);
+        switch (data.getType()) {
+            case 0:
+                return TEXT_TYPE;
+            case 1:
+                return IMAGE_TYPE;
+            case 2:
+                return CREATE_POST_TYPE;
+            default:
+                throw new IllegalArgumentException("Invalid position " + position);
         }
     }
 }

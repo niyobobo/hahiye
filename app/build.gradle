@@ -1,5 +1,4 @@
 apply plugin: 'com.android.application'
-apply plugin: 'kotlin-android'
 apply plugin: 'com.google.protobuf'
 
 def versionMajor = 1
@@ -40,14 +39,11 @@ android {
     }
 
     lintOptions {
-        disable 'GoogleAppIndexingWarning', 'HardcodedText', 'InvalidPackage'
+        disable 'GoogleAppIndexingWarning'
         textReport true
         textOutput "stdout"
     }
 
-    dataBinding {
-        enabled = true
-    }
     compileOptions {
         targetCompatibility JavaVersion.VERSION_1_8
         sourceCompatibility JavaVersion.VERSION_1_8
@@ -132,12 +128,12 @@ dependencies {
     implementation 'androidx.multidex:multidex:2.0.1'
     implementation 'de.hdodenhof:circleimageview:3.0.0'
     implementation 'com.thefinestartist:movingbutton:1.0.0'
-
+    implementation 'com.jakewharton:butterknife:10.0.0'
+    annotationProcessor 'com.jakewharton:butterknife-compiler:10.0.0'
 
     testImplementation 'junit:junit:4.12'
     androidTestImplementation 'androidx.test:runner:1.1.1'
     androidTestImplementation 'androidx.test.espresso:espresso-core:3.1.1'
-    implementation "org.jetbrains.kotlin:kotlin-stdlib-jdk7:$kotlin_version"
 }
 repositories {
     mavenCentral()

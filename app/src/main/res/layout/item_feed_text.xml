@@ -27,7 +27,7 @@
         app:layout_constraintTop_toBottomOf="@+id/img_feed_posterImg" />
 
     <TextView
-        android:id="@+id/txt_feed_posterImg"
+        android:id="@+id/feed_posterName"
         android:layout_width="0dp"
         android:layout_height="wrap_content"
         android:layout_marginStart="16dp"
@@ -49,7 +49,7 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintTop_toTopOf="@+id/txt_feed_posterImg"
+        app:layout_constraintTop_toTopOf="@+id/feed_posterName"
         app:srcCompat="@drawable/ic_option_load" />
 
     <TextView
@@ -60,7 +60,7 @@
         android:textAppearance="@style/TextAppearance.AppCompat"
         android:textSize="16sp"
         app:layout_constraintEnd_toStartOf="@+id/img_feed_options"
-        app:layout_constraintStart_toStartOf="@+id/txt_feed_posterImg"
+        app:layout_constraintStart_toStartOf="@+id/feed_posterName"
         app:layout_constraintTop_toBottomOf="@+id/img_feed_options" />
 
     <ProgressBar

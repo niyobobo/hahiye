@@ -17,6 +17,7 @@ public class HomeActivity extends AppCompatActivity {
 
     private final String SELECTED_FRAGMENT = "SELECTED_FRAGMENT";
     private Fragment mFragment;
+
     /**
      * Creating instance of BottomNavigationView.OnNavigationItemSelectedListener and
      * set it to OnNavigationItemSelectedListener method as parameter
