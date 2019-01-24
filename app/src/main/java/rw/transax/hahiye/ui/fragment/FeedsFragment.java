@@ -6,6 +6,7 @@ import android.os.Bundle;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.Toast;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -16,14 +17,24 @@ import androidx.appcompat.widget.AppCompatImageView;
 import androidx.fragment.app.Fragment;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
+import butterknife.BindView;
+import butterknife.ButterKnife;
 import rw.transax.hahiye.R;
-import rw.transax.hahiye.callback.FeedComment;
+import rw.transax.hahiye.callback.ClosingCreateFeedView;
+import rw.transax.hahiye.callback.FeedItemClickCallback;
 import rw.transax.hahiye.model.FeedsModel;
 import rw.transax.hahiye.ui.adapter.FeedsAdapter;
-import rw.transax.hahiye.utils.CreatePostImageView;
 import rw.transax.hahiye.utils.DividerItemDecoration;
 
-public class FeedsFragment extends Fragment implements FeedComment {
+public class FeedsFragment extends Fragment implements
+        FeedItemClickCallback,
+        View.OnClickListener,
+        ClosingCreateFeedView {
+
+    @BindView(R.id.feedsRecyclerView)
+    RecyclerView feedRecyclerView;
+    @BindView(R.id.img_create_post)
+    AppCompatImageView imgCreatePost;
 
     private Context mContext;
     private FeedsAdapter feedsAdapter;
@@ -34,7 +45,7 @@ public class FeedsFragment extends Fragment implements FeedComment {
         super.onCreate(savedInstanceState);
         mContext = getContext();
         sample = new ArrayList<>();
-        feedsAdapter = new FeedsAdapter(mContext, this);
+        feedsAdapter = new FeedsAdapter(mContext, this, this);
     }
 
     @Override
@@ -47,17 +58,15 @@ public class FeedsFragment extends Fragment implements FeedComment {
     @Override
     public void onViewCreated(@NonNull View view, @Nullable Bundle savedInstanceState) {
         super.onViewCreated(view, savedInstanceState);
-        RecyclerView recyclerView = view.findViewById(R.id.feedsRecyclerView);
-        recyclerView.setHasFixedSize(true);
-        recyclerView.setLayoutManager(new LinearLayoutManager(mContext));
-        recyclerView.addItemDecoration(new DividerItemDecoration(mContext));
-        recyclerView.setAdapter(feedsAdapter);
-        AppCompatImageView mImageView = view.findViewById(R.id.img_create_post);
-        mImageView.setOnTouchListener(new CreatePostImageView());
+        ButterKnife.bind(this, view);
+        feedRecyclerView.setHasFixedSize(true);
+        feedRecyclerView.setLayoutManager(new LinearLayoutManager(mContext));
+        feedRecyclerView.addItemDecoration(new DividerItemDecoration(mContext));
+        feedRecyclerView.setAdapter(feedsAdapter);
+        imgCreatePost.setOnClickListener(this);
 
         feedsAdapter.add(getData());
     }
-
 
     private List<FeedsModel> getData() {
         FeedsModel feedsModel = new FeedsModel();
@@ -71,14 +80,31 @@ public class FeedsFragment extends Fragment implements FeedComment {
     }
 
     @Override
-    public void makeComment(FeedsModel feedItem) {
-        FeedsModel newFeed = new FeedsModel();
-        newFeed.setType(2);
-        feedsAdapter.createFeed(newFeed);
+    public void commentOnFeed(FeedsModel feedItem) {
+        Toast.makeText(mContext, "Commented", Toast.LENGTH_SHORT).show();
     }
 
     @Override
-    public void makeLike(FeedComment feedItem) {
+    public void likeFeed(FeedsModel feedItem) {
+        Toast.makeText(mContext, "Liked", Toast.LENGTH_SHORT).show();
+    }
 
+    @Override
+    public void closeFeedView(int position) {
+        feedsAdapter.removeCreateFeedView(position, imgCreatePost);
+    }
+
+    @Override
+    public void createFeed(FeedsModel feedsModel, int position) {
+        Toast.makeText(mContext, "Sharing.....", Toast.LENGTH_SHORT).show();
+        feedsAdapter.removeCreateFeedView(position, imgCreatePost);
+    }
+
+    @Override
+    public void onClick(View v) {
+        FeedsModel newFeed = new FeedsModel();
+        newFeed.setType(2);
+        feedsAdapter.createFeed(newFeed);
+        v.setVisibility(v.getVisibility() == View.VISIBLE ? View.GONE : View.VISIBLE);
     }
 }

@@ -6,6 +6,8 @@ import com.google.android.material.bottomnavigation.BottomNavigationView;
 
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.fragment.app.Fragment;
+import butterknife.BindView;
+import butterknife.ButterKnife;
 import rw.transax.hahiye.R;
 import rw.transax.hahiye.ui.fragment.FeedsFragment;
 import rw.transax.hahiye.ui.fragment.HomeFragment;
@@ -17,6 +19,9 @@ public class HomeActivity extends AppCompatActivity {
 
     private final String SELECTED_FRAGMENT = "SELECTED_FRAGMENT";
     private Fragment mFragment;
+
+    @BindView(R.id.home_navigation)
+    BottomNavigationView bottomNavigationView;
 
     /**
      * Creating instance of BottomNavigationView.OnNavigationItemSelectedListener and
@@ -48,8 +53,8 @@ public class HomeActivity extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_home);
-        BottomNavigationView navigationView = findViewById(R.id.home_navigation);
-        navigationView.setOnNavigationItemSelectedListener(itemSelectedListener);
+        ButterKnife.bind(this);
+        bottomNavigationView.setOnNavigationItemSelectedListener(itemSelectedListener);
 
         if (savedInstanceState != null)
             mFragment = getSupportFragmentManager().getFragment(savedInstanceState, SELECTED_FRAGMENT);
@@ -75,6 +80,7 @@ public class HomeActivity extends AppCompatActivity {
      * @return Return true when mFragment loaded otherwise false
      */
     private boolean fragmentTransaction(Fragment fragment) {
+        mFragment = fragment;
         if (fragment != null) {
             getSupportFragmentManager()
                     .beginTransaction()

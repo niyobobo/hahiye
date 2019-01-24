@@ -11,10 +11,11 @@ import java.util.List;
 import androidx.annotation.NonNull;
 import androidx.recyclerview.widget.RecyclerView;
 import rw.transax.hahiye.R;
-import rw.transax.hahiye.callback.FeedComment;
+import rw.transax.hahiye.callback.ClosingCreateFeedView;
+import rw.transax.hahiye.callback.FeedItemClickCallback;
 import rw.transax.hahiye.model.FeedsModel;
 import rw.transax.hahiye.ui.viewHolder.BaseViewHolder;
-import rw.transax.hahiye.ui.viewHolder.CreatePostTypeViewHolder;
+import rw.transax.hahiye.ui.viewHolder.CreateFeedViewHolder;
 import rw.transax.hahiye.ui.viewHolder.ImageTypeViewHolder;
 import rw.transax.hahiye.ui.viewHolder.TextTypeViewHolder;
 
@@ -25,12 +26,14 @@ public class FeedsAdapter extends RecyclerView.Adapter<BaseViewHolder<FeedsModel
     private static final int CREATE_POST_TYPE = 2;
 
     private List<FeedsModel> dataSet;
-    private FeedComment feedComment;
+    private FeedItemClickCallback clickCallback;
+    private ClosingCreateFeedView createFeedView;
     private Context mContext;
 
-    public FeedsAdapter(Context context, FeedComment feedComment) {
+    public FeedsAdapter(Context context, FeedItemClickCallback clickCallback, ClosingCreateFeedView feedView) {
         mContext = context;
-        this.feedComment = feedComment;
+        this.clickCallback = clickCallback;
+        this.createFeedView = feedView;
     }
 
     @NonNull
@@ -42,7 +45,7 @@ public class FeedsAdapter extends RecyclerView.Adapter<BaseViewHolder<FeedsModel
 
             case TEXT_TYPE: {
                 view = layoutInflater.inflate(R.layout.item_feed_text, parent, false);
-                return new TextTypeViewHolder(view, dataSet, mContext, feedComment);
+                return new TextTypeViewHolder(view, clickCallback);
             }
             case IMAGE_TYPE: {
                 view = layoutInflater.inflate(R.layout.item_feed_text, parent, false);
@@ -50,7 +53,7 @@ public class FeedsAdapter extends RecyclerView.Adapter<BaseViewHolder<FeedsModel
             }
             case CREATE_POST_TYPE: {
                 view = layoutInflater.inflate(R.layout.item_create_post, parent, false);
-                return new CreatePostTypeViewHolder(view);
+                return new CreateFeedViewHolder(view, createFeedView);
             }
             default:
                 throw new IllegalArgumentException("Invalid view type");
@@ -70,9 +73,25 @@ public class FeedsAdapter extends RecyclerView.Adapter<BaseViewHolder<FeedsModel
         notifyDataSetChanged();
     }
 
+    /**
+     * Adding CreatePost View to the recycleview Adapter
+     * Don't forget to check whether the view is exist before adding it to the view
+     * holder. Only single view needed.
+     *
+     * @param model make sure type of this view equals to CREATE_POST_TYPE = 2;
+     */
+
     public void createFeed(FeedsModel model) {
-        dataSet.add(3, model);
-        notifyItemInserted(3);
+        if (getItemViewType(2) != CREATE_POST_TYPE) {
+            dataSet.add(2, model);
+            notifyItemInserted(2);
+        }
+    }
+
+    public void removeCreateFeedView(int position, View v) {
+        dataSet.remove(position);
+        notifyItemRemoved(position);
+        v.setVisibility(v.getVisibility() == View.VISIBLE ? View.GONE : View.VISIBLE);
     }
 
     @Override

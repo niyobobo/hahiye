@@ -1,25 +1,20 @@
 package rw.transax.hahiye.ui.viewHolder;
 
-import android.content.Context;
+import android.annotation.SuppressLint;
+import android.view.MotionEvent;
 import android.view.View;
 import android.widget.ProgressBar;
 import android.widget.TextView;
-
-import java.util.List;
 
 import androidx.annotation.NonNull;
 import androidx.appcompat.widget.AppCompatImageView;
 import butterknife.BindView;
 import de.hdodenhof.circleimageview.CircleImageView;
 import rw.transax.hahiye.R;
-import rw.transax.hahiye.callback.FeedComment;
+import rw.transax.hahiye.callback.FeedItemClickCallback;
 import rw.transax.hahiye.model.FeedsModel;
 
 public class TextTypeViewHolder extends BaseViewHolder<FeedsModel> {
-
-    private Context context;
-    private List<FeedsModel> itemModels;
-    private FeedComment feedComment;
 
     @BindView(R.id.img_feed_posterImg)
     CircleImageView userProfile;
@@ -34,20 +29,50 @@ public class TextTypeViewHolder extends BaseViewHolder<FeedsModel> {
     AppCompatImageView btn_commenting;
 
     @BindView(R.id.btn_feed_like)
-    AppCompatImageView likeFeed;
+    AppCompatImageView btn_like;
 
     @BindView(R.id.feed_hitLevel)
     ProgressBar feedHitLevel;
 
-    public TextTypeViewHolder(@NonNull View itemView, List<FeedsModel> itemModels, Context context, FeedComment feedComment) {
+    private int progressStatus = 0;
+    private Boolean running = true;
+    private FeedItemClickCallback feedItemClickCallback;
+    private android.os.Handler handler = new android.os.Handler();
+
+    public TextTypeViewHolder(@NonNull View itemView, FeedItemClickCallback feedItemClickCallback) {
         super(itemView);
-        this.itemModels = itemModels;
-        this.context = context;
-        this.feedComment = feedComment;
+        this.feedItemClickCallback = feedItemClickCallback;
     }
 
+    @SuppressLint("ClickableViewAccessibility")
     @Override
     public void bind(FeedsModel item) {
-        btn_commenting.setOnClickListener(v -> feedComment.makeComment(item));
+        btn_commenting.setOnClickListener(v -> feedItemClickCallback.commentOnFeed(item));
+        btn_like.setOnTouchListener((v, event) -> likeFeed(event, item));
+    }
+
+    private boolean likeFeed(MotionEvent event, FeedsModel item) {
+        if (event.getAction() == MotionEvent.ACTION_DOWN) {
+            new Thread(() -> {
+                while (progressStatus < 100 && running) {
+                    progressStatus++;
+                    /*
+                     * Update progressBar value
+                     */
+                    handler.post(() -> feedHitLevel.setProgress(progressStatus));
+                    try {
+                        // add delay of 20 milliseconds.
+                        Thread.sleep(20);
+                    } catch (InterruptedException e) {
+                        e.printStackTrace();
+                    }
+                }
+            }).start();
+            return true;
+        } else if (event.getAction() == MotionEvent.ACTION_UP) {
+            running = false;
+            feedItemClickCallback.likeFeed(item);
+        }
+        return false;
     }
 }

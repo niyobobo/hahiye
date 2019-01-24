@@ -18,6 +18,8 @@ import java.util.Objects;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.appcompat.widget.Toolbar;
 import androidx.lifecycle.ViewModelProviders;
+import butterknife.BindView;
+import butterknife.ButterKnife;
 import rw.transax.hahiye.R;
 import rw.transax.hahiye.callback.InterestSelected;
 import rw.transax.hahiye.model.InterestModel;
@@ -26,10 +28,16 @@ import rw.transax.hahiye.viewModel.InterestViewModel;
 public class InterestActivity extends AppCompatActivity implements
         InterestSelected, View.OnClickListener {
 
+    @BindView(R.id.action_button)
+    ImageView mActionButton;
+    @BindView(R.id.next_page)
+    TextView mContinue;
+    @BindView(R.id.chip_group)
+    ChipGroup entryChipGroup;
+    @BindView(R.id.toolbar)
+    Toolbar toolbar;
+
     private InterestViewModel viewModel;
-    private ImageView mActionButton;
-    private TextView mContinue;
-    private ChipGroup entryChipGroup;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -49,13 +57,10 @@ public class InterestActivity extends AppCompatActivity implements
     }
 
     private void init() {
-        Toolbar toolbar = findViewById(R.id.toolbar);
+        ButterKnife.bind(this);
         setSupportActionBar(toolbar);
         Objects.requireNonNull(getSupportActionBar()).setTitle(null);
         Objects.requireNonNull(getSupportActionBar()).setDisplayHomeAsUpEnabled(true);
-        mContinue = findViewById(R.id.next_page);
-        entryChipGroup = findViewById(R.id.chip_group);
-        mActionButton = findViewById(R.id.action_button);
         mActionButton.setOnClickListener(this);
     }
 

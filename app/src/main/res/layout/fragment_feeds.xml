@@ -20,8 +20,8 @@
     <androidx.recyclerview.widget.RecyclerView
         android:id="@+id/feedsRecyclerView"
         android:layout_width="match_parent"
-        app:layout_behavior="@string/appbar_scrolling_view_behavior"
-        android:layout_height="match_parent" />
+        android:layout_height="match_parent"
+        app:layout_behavior="@string/appbar_scrolling_view_behavior" />
 
     <androidx.appcompat.widget.AppCompatImageView
         android:id="@+id/img_create_post"
@@ -29,6 +29,7 @@
         android:layout_height="@dimen/button_size"
         android:layout_gravity="center_vertical"
         android:adjustViewBounds="true"
+        android:animateLayoutChanges="true"
         android:scaleType="fitStart"
         app:srcCompat="@drawable/ic_play"
         app:tint="@color/colorPrimary" />

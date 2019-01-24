@@ -3,26 +3,39 @@ package rw.transax.hahiye.ui.activity;
 import android.content.Context;
 import android.content.Intent;
 import android.os.Bundle;
-import androidx.annotation.NonNull;
-import androidx.viewpager.widget.PagerAdapter;
-import androidx.viewpager.widget.ViewPager;
-import androidx.appcompat.app.AppCompatActivity;
 import android.text.Html;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
-import android.widget.Button;
 import android.widget.LinearLayout;
 import android.widget.TextView;
 
 import com.doctoror.particlesdrawable.ParticlesDrawable;
+import com.doctoror.particlesdrawable.ParticlesView;
+import com.google.android.material.button.MaterialButton;
 
+import androidx.annotation.NonNull;
+import androidx.appcompat.app.AppCompatActivity;
+import androidx.viewpager.widget.PagerAdapter;
+import androidx.viewpager.widget.ViewPager;
+import butterknife.BindView;
+import butterknife.ButterKnife;
 import rw.transax.hahiye.R;
 
 public class AppIntroActivity extends AppCompatActivity implements
         ViewPager.OnPageChangeListener, View.OnClickListener {
 
-    private LinearLayout dotsLayout;
+    @BindView(R.id.linear_dots)
+    LinearLayout dotsLayout;
+    @BindView(R.id.particles)
+    ParticlesView particlesView;
+    @BindView(R.id.btn_signIn)
+    MaterialButton login;
+    @BindView(R.id.btn_signUp)
+    MaterialButton register;
+    @BindView(R.id.viewPager_slider)
+    ViewPager viewPager;
+
     private int[] viewLayouts;
     private ParticlesDrawable particlesDrawable = new ParticlesDrawable();
 
@@ -30,22 +43,17 @@ public class AppIntroActivity extends AppCompatActivity implements
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_app_intro);
+        ButterKnife.bind(this);
 
-        findViewById(R.id.particles).setBackground(particlesDrawable);
-
-        Button login = findViewById(R.id.btn_signIn);
-        Button register = findViewById(R.id.btn_signUp);
+        particlesView.setBackground(particlesDrawable);
         login.setOnClickListener(this);
         register.setOnClickListener(this);
-
-        dotsLayout = findViewById(R.id.linear_dots);
         viewLayouts = new int[]{
                 R.layout.slider_1,
                 R.layout.slider_2,
                 R.layout.slider_3
         };
 
-        ViewPager viewPager = findViewById(R.id.viewPager_slider);
         viewPager.setAdapter(new MyViewPagerAdapter());
         viewPager.addOnPageChangeListener(this);
         viewPager.setOffscreenPageLimit(2);

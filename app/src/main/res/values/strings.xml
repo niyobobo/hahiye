@@ -12,4 +12,5 @@
     <string name="select_at_least_5_interest">Select at least 5 interest to continue</string>
     <string name="max_chip_selected">You are set.</string>
     <string name="location">Location</string>
+    <string name="share_your_moment">Share your moment</string>
 </resources>
