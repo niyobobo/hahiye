@@ -4,24 +4,24 @@ import java.util.Arrays;
 import java.util.List;
 import java.util.UUID;
 
-import rw.transax.hahiye.model.InterestModel;
+import rw.transax.hahiye.model.Interest;
 
 class DataGenerator {
 
-    static List<InterestModel> SAMPLE_DATA() {
+    static List<Interest> SAMPLE_DATA() {
         return Arrays.asList(
-                new InterestModel(UUID.randomUUID().toString(), "Hotel", "https://api.androidhive.info/images/food/5.jpg"),
-                new InterestModel(UUID.randomUUID().toString(), "Pub", "https://api.androidhive.info/images/food/5.jpg"),
-                new InterestModel(UUID.randomUUID().toString(), "Restaurant", "https://api.androidhive.info/images/food/5.jpg"),
-                new InterestModel(UUID.randomUUID().toString(), "Restaurant", "https://api.androidhive.info/images/food/5.jpg"),
-                new InterestModel(UUID.randomUUID().toString(), "Restaurant", "https://api.androidhive.info/images/food/5.jpg"),
-                new InterestModel(UUID.randomUUID().toString(), "Restaurant", "https://api.androidhive.info/images/food/5.jpg"),
-                new InterestModel(UUID.randomUUID().toString(), "Restaurant", "https://api.androidhive.info/images/food/5.jpg"),
-                new InterestModel(UUID.randomUUID().toString(), "Restaurant", "https://api.androidhive.info/images/food/5.jpg"),
-                new InterestModel(UUID.randomUUID().toString(), "Restaurant", "https://api.androidhive.info/images/food/5.jpg"),
-                new InterestModel(UUID.randomUUID().toString(), "Restaurant", "https://api.androidhive.info/images/food/5.jpg"),
-                new InterestModel(UUID.randomUUID().toString(), "Restaurant", "https://api.androidhive.info/images/food/5.jpg"),
-                new InterestModel(UUID.randomUUID().toString(), "Cafe-Resto", "https://api.androidhive.info/images/food/5.jpg")
+                new Interest(UUID.randomUUID().toString(), "Hotel", "https://api.androidhive.info/images/food/5.jpg"),
+                new Interest(UUID.randomUUID().toString(), "Pub", "https://api.androidhive.info/images/food/5.jpg"),
+                new Interest(UUID.randomUUID().toString(), "Restaurant", "https://api.androidhive.info/images/food/5.jpg"),
+                new Interest(UUID.randomUUID().toString(), "Restaurant", "https://api.androidhive.info/images/food/5.jpg"),
+                new Interest(UUID.randomUUID().toString(), "Restaurant", "https://api.androidhive.info/images/food/5.jpg"),
+                new Interest(UUID.randomUUID().toString(), "Restaurant", "https://api.androidhive.info/images/food/5.jpg"),
+                new Interest(UUID.randomUUID().toString(), "Restaurant", "https://api.androidhive.info/images/food/5.jpg"),
+                new Interest(UUID.randomUUID().toString(), "Restaurant", "https://api.androidhive.info/images/food/5.jpg"),
+                new Interest(UUID.randomUUID().toString(), "Restaurant", "https://api.androidhive.info/images/food/5.jpg"),
+                new Interest(UUID.randomUUID().toString(), "Restaurant", "https://api.androidhive.info/images/food/5.jpg"),
+                new Interest(UUID.randomUUID().toString(), "Restaurant", "https://api.androidhive.info/images/food/5.jpg"),
+                new Interest(UUID.randomUUID().toString(), "Cafe-Resto", "https://api.androidhive.info/images/food/5.jpg")
         );
 
     }

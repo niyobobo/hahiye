@@ -1,6 +1,6 @@
 package rw.transax.hahiye.callback;
 
-import rw.transax.hahiye.model.InterestModel;
+import rw.transax.hahiye.model.Interest;
 
 /**
  * Call back to be implemented by Interest activity so that
@@ -8,5 +8,5 @@ import rw.transax.hahiye.model.InterestModel;
  */
 
 public interface InterestSelected {
-    void onInterestSelected(InterestModel interest);
+    void onInterestSelected(Interest interest);
 }

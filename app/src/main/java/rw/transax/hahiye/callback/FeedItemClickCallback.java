@@ -1,9 +1,9 @@
 package rw.transax.hahiye.callback;
 
-import rw.transax.hahiye.model.FeedsModel;
+import rw.transax.hahiye.model.Feeds;
 
 public interface FeedItemClickCallback {
-    void commentOnFeed(FeedsModel feedItem);
+    void commentOnFeed(Feeds feedItem);
 
-    void likeFeed(FeedsModel feedItem);
+    void likeFeed(Feeds feedItem);
 }

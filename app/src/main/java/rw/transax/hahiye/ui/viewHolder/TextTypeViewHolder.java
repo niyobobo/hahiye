@@ -12,9 +12,9 @@ import butterknife.BindView;
 import de.hdodenhof.circleimageview.CircleImageView;
 import rw.transax.hahiye.R;
 import rw.transax.hahiye.callback.FeedItemClickCallback;
-import rw.transax.hahiye.model.FeedsModel;
+import rw.transax.hahiye.model.Feeds;
 
-public class TextTypeViewHolder extends BaseViewHolder<FeedsModel> {
+public class TextTypeViewHolder extends BaseViewHolder<Feeds> {
 
     @BindView(R.id.img_feed_posterImg)
     CircleImageView userProfile;
@@ -46,12 +46,12 @@ public class TextTypeViewHolder extends BaseViewHolder<FeedsModel> {
 
     @SuppressLint("ClickableViewAccessibility")
     @Override
-    public void bind(FeedsModel item) {
+    public void bind(Feeds item) {
         btn_commenting.setOnClickListener(v -> feedItemClickCallback.commentOnFeed(item));
         btn_like.setOnTouchListener((v, event) -> likeFeed(event, item));
     }
 
-    private boolean likeFeed(MotionEvent event, FeedsModel item) {
+    private boolean likeFeed(MotionEvent event, Feeds item) {
         if (event.getAction() == MotionEvent.ACTION_DOWN) {
             new Thread(() -> {
                 while (progressStatus < 100 && running) {

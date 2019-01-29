@@ -141,7 +141,6 @@
                             android:hint="@string/password"
                             android:inputType="textPassword"
                             android:padding="@dimen/big_margin"
-                            android:text="@={viewModel.password}"
                             android:textColor="@color/colorPrimaryDark"
                             android:textColorHint="@color/colorView"
                             android:textCursorDrawable="@null" />

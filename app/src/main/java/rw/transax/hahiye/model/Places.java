@@ -7,7 +7,7 @@ import androidx.room.PrimaryKey;
 import java.util.Date;
 
 @Entity(tableName = "places")
-public class PlaceModel {
+public class Places {
     @PrimaryKey(autoGenerate = true)
     private int id;
     private String uid;
@@ -22,11 +22,11 @@ public class PlaceModel {
     private Date createdAt;
 
     @Ignore
-    public PlaceModel() {
+    public Places() {
     }
 
-    public PlaceModel(int id, String uid, String name, String featured, String website, String tagLine,
-                      String contact, int verified, String location, String amenity, Date createdAt) {
+    public Places(int id, String uid, String name, String featured, String website, String tagLine,
+                  String contact, int verified, String location, String amenity, Date createdAt) {
         this.id = id;
         this.uid = uid;
         this.name = name;

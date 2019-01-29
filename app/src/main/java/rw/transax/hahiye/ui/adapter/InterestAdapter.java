@@ -17,9 +17,9 @@ import androidx.recyclerview.widget.ListAdapter;
 import androidx.recyclerview.widget.RecyclerView;
 import rw.transax.hahiye.R;
 import rw.transax.hahiye.callback.InterestSelected;
-import rw.transax.hahiye.model.InterestModel;
+import rw.transax.hahiye.model.Interest;
 
-public class InterestAdapter extends ListAdapter<InterestModel, InterestAdapter.ViewHolder> {
+public class InterestAdapter extends ListAdapter<Interest, InterestAdapter.ViewHolder> {
 
     private Context context;
     private InterestSelected interestSelected;
@@ -66,7 +66,7 @@ public class InterestAdapter extends ListAdapter<InterestModel, InterestAdapter.
             selected = itemView.findViewById(R.id.selected_interest);
         }
 
-        void bindTo(InterestModel interest) {
+        void bindTo(Interest interest) {
             name.setText(interest.getName());
             Glide.with(context)
                     .load(interest.getIcon())
@@ -84,16 +84,16 @@ public class InterestAdapter extends ListAdapter<InterestModel, InterestAdapter.
      * method and adapter change accordingly
      */
 
-    private static final DiffUtil.ItemCallback<InterestModel> DIFF_CALLBACK = new DiffUtil.ItemCallback<InterestModel>() {
+    private static final DiffUtil.ItemCallback<Interest> DIFF_CALLBACK = new DiffUtil.ItemCallback<Interest>() {
 
         @Override
-        public boolean areItemsTheSame(@NonNull InterestModel oldItem, @NonNull InterestModel newItem) {
+        public boolean areItemsTheSame(@NonNull Interest oldItem, @NonNull Interest newItem) {
             return oldItem.getId() == newItem.getId()
                     && oldItem.getUid().equals(newItem.getUid());
         }
 
         @Override
-        public boolean areContentsTheSame(@NonNull InterestModel oldInterest, @NonNull InterestModel newInterest) {
+        public boolean areContentsTheSame(@NonNull Interest oldInterest, @NonNull Interest newInterest) {
             return oldInterest.getId() == newInterest.getId()
                     && oldInterest.getUid().equals(newInterest.getUid())
                     && oldInterest.getName().equals(newInterest.getName())
@@ -103,7 +103,7 @@ public class InterestAdapter extends ListAdapter<InterestModel, InterestAdapter.
 
         @Nullable
         @Override
-        public Object getChangePayload(@NonNull InterestModel oldItem, @NonNull InterestModel newItem) {
+        public Object getChangePayload(@NonNull Interest oldItem, @NonNull Interest newItem) {
             return super.getChangePayload(oldItem, newItem);
         }
     };

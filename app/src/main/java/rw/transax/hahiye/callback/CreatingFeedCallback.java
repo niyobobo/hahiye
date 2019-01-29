@@ -1,8 +1,8 @@
 package rw.transax.hahiye.callback;
 
-import rw.transax.hahiye.model.FeedsModel;
+import rw.transax.hahiye.model.Feeds;
 
-public interface ClosingCreateFeedView {
+public interface CreatingFeedCallback {
     /*
      * Callback function that will be called when some action happens on
      * create feed custom view
@@ -10,5 +10,5 @@ public interface ClosingCreateFeedView {
 
     void closeFeedView(int position);
 
-    void createFeed(FeedsModel feedsModel, int position);
+    void createFeed(Feeds feeds, int position);
 }

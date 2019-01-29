@@ -7,19 +7,19 @@ import androidx.room.Query;
 
 import java.util.List;
 
-import rw.transax.hahiye.model.PlaceModel;
+import rw.transax.hahiye.model.Places;
 
 import static androidx.room.OnConflictStrategy.REPLACE;
 
 @Dao
-public interface PlacesDao extends GenericDao<PlaceModel> {
+public interface PlacesDao extends GenericDao<Places> {
 
     @Insert(onConflict = REPLACE)
-    void insertAllPlaces(List<PlaceModel> placeModels);
+    void insertAllPlaces(List<Places> places);
 
-    @Query("SELECT * FROM places")
-    LiveData<List<PlaceModel>> getAllPlaces();
+    @Query("SELECT * FROM Places")
+    LiveData<List<Places>> getAllPlaces();
 
-    @Query("SELECT * FROM places WHERE uid= :place_uid")
-    PlaceModel getPlaceInfo(String place_uid);
+    @Query("SELECT * FROM Places WHERE uid= :place_uid")
+    Places getPlaceInfo(String place_uid);
 }

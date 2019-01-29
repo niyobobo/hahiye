@@ -20,16 +20,16 @@ import androidx.recyclerview.widget.RecyclerView;
 import butterknife.BindView;
 import butterknife.ButterKnife;
 import rw.transax.hahiye.R;
-import rw.transax.hahiye.callback.ClosingCreateFeedView;
+import rw.transax.hahiye.callback.CreatingFeedCallback;
 import rw.transax.hahiye.callback.FeedItemClickCallback;
-import rw.transax.hahiye.model.FeedsModel;
+import rw.transax.hahiye.model.Feeds;
 import rw.transax.hahiye.ui.adapter.FeedsAdapter;
 import rw.transax.hahiye.utils.DividerItemDecoration;
 
 public class FeedsFragment extends Fragment implements
         FeedItemClickCallback,
         View.OnClickListener,
-        ClosingCreateFeedView {
+        CreatingFeedCallback {
 
     @BindView(R.id.feedsRecyclerView)
     RecyclerView feedRecyclerView;
@@ -38,7 +38,7 @@ public class FeedsFragment extends Fragment implements
 
     private Context mContext;
     private FeedsAdapter feedsAdapter;
-    private List<FeedsModel> sample;
+    private List<Feeds> sample;
 
     @Override
     public void onCreate(@Nullable Bundle savedInstanceState) {
@@ -68,24 +68,24 @@ public class FeedsFragment extends Fragment implements
         feedsAdapter.add(getData());
     }
 
-    private List<FeedsModel> getData() {
-        FeedsModel feedsModel = new FeedsModel();
-        feedsModel.setType(0);
-        feedsModel.setDescription("I won't post the reversal animation so this article doesn't get enormous, but I am sure you can figure it out.");
-        feedsModel.setDate("Jan 5");
+    private List<Feeds> getData() {
+        Feeds feeds = new Feeds();
+        feeds.setType(0);
+        feeds.setDescription("I won't post the reversal animation so this article doesn't get enormous, but I am sure you can figure it out.");
+        feeds.setDate("Jan 5");
         for (int i = 0; i < 20; i++) {
-            sample.add(feedsModel);
+            sample.add(feeds);
         }
         return sample;
     }
 
     @Override
-    public void commentOnFeed(FeedsModel feedItem) {
+    public void commentOnFeed(Feeds feedItem) {
         Toast.makeText(mContext, "Commented", Toast.LENGTH_SHORT).show();
     }
 
     @Override
-    public void likeFeed(FeedsModel feedItem) {
+    public void likeFeed(Feeds feedItem) {
         Toast.makeText(mContext, "Liked", Toast.LENGTH_SHORT).show();
     }
 
@@ -95,14 +95,14 @@ public class FeedsFragment extends Fragment implements
     }
 
     @Override
-    public void createFeed(FeedsModel feedsModel, int position) {
+    public void createFeed(Feeds feeds, int position) {
         Toast.makeText(mContext, "Sharing.....", Toast.LENGTH_SHORT).show();
         feedsAdapter.removeCreateFeedView(position, imgCreatePost);
     }
 
     @Override
     public void onClick(View v) {
-        FeedsModel newFeed = new FeedsModel();
+        Feeds newFeed = new Feeds();
         newFeed.setType(2);
         feedsAdapter.createFeed(newFeed);
         v.setVisibility(v.getVisibility() == View.VISIBLE ? View.GONE : View.VISIBLE);

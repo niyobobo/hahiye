@@ -5,7 +5,7 @@ import androidx.room.Ignore;
 import androidx.room.PrimaryKey;
 
 @Entity(tableName = "interest")
-public class InterestModel {
+public class Interest {
 
     @PrimaryKey(autoGenerate = true)
     private int id;
@@ -16,11 +16,11 @@ public class InterestModel {
     private boolean isUploaded;
 
     @Ignore
-    public InterestModel() {
+    public Interest() {
     }
 
     @Ignore
-    public InterestModel(String uid, String name, String icon) {
+    public Interest(String uid, String name, String icon) {
         this.uid = uid;
         this.name = name;
         this.icon = icon;
@@ -28,7 +28,7 @@ public class InterestModel {
         this.isUploaded = false;
     }
 
-    public InterestModel(int id, String uid, String name, String icon, boolean isFollowed, boolean isUploaded) {
+    public Interest(int id, String uid, String name, String icon, boolean isFollowed, boolean isUploaded) {
         this.id = id;
         this.uid = uid;
         this.name = name;

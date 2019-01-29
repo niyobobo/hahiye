@@ -4,11 +4,11 @@ import androidx.lifecycle.LiveData;
 import androidx.room.Dao;
 import androidx.room.Query;
 
-import rw.transax.hahiye.model.UserModel;
+import rw.transax.hahiye.model.User;
 
 @Dao
-public interface UserDao extends GenericDao<UserModel> {
+public interface UserDao extends GenericDao<User> {
 
-    @Query("SELECT * FROM user ")
-    LiveData<UserModel> getUserInfo();
+    @Query("SELECT * FROM User ")
+    LiveData<User> getUserInfo();
 }

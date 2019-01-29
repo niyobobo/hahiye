@@ -6,25 +6,25 @@ import androidx.lifecycle.LiveData;
 import androidx.room.Dao;
 import androidx.room.Insert;
 import androidx.room.Query;
-import rw.transax.hahiye.model.InterestModel;
+import rw.transax.hahiye.model.Interest;
 
 import static androidx.room.OnConflictStrategy.REPLACE;
 
 @Dao
-public interface InterestDao extends GenericDao<InterestModel> {
+public interface InterestDao extends GenericDao<Interest> {
 
     @Insert(onConflict = REPLACE)
-    void saveInterests(List<InterestModel> interestModels);
+    void saveInterests(List<Interest> interests);
 
-    @Query("SELECT * FROM interest")
-    LiveData<List<InterestModel>> getAllInterest();
+    @Query("SELECT * FROM Interest")
+    LiveData<List<Interest>> getAllInterest();
 
-    @Query("SELECT * FROM interest WHERE uid= :uid")
-    InterestModel getInterest(String uid);
+    @Query("SELECT * FROM Interest WHERE uid= :uid")
+    Interest getInterest(String uid);
 
-    @Query("UPDATE interest SET isFollowed = :value WHERE uid= :uid")
+    @Query("UPDATE Interest SET isFollowed = :value WHERE uid= :uid")
     void selectInterest(boolean value, String uid);
 
-    @Query("SELECT COUNT(isFollowed) FROM interest WHERE isFollowed = 1")
+    @Query("SELECT COUNT(isFollowed) FROM Interest WHERE isFollowed = 1")
     LiveData<Integer> totalSelectedInterest();
 }

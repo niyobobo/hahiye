@@ -10,11 +10,11 @@ import androidx.lifecycle.LiveData;
 import androidx.lifecycle.MediatorLiveData;
 import rw.transax.hahiye.BasicApp;
 import rw.transax.hahiye.data.repository.DataRepository;
-import rw.transax.hahiye.model.InterestModel;
+import rw.transax.hahiye.model.Interest;
 
 public class InterestViewModel extends AndroidViewModel {
 
-    private final MediatorLiveData<List<InterestModel>> mObservableInterests;
+    private final MediatorLiveData<List<Interest>> mObservableInterests;
     private final MediatorLiveData<Integer> mTotalInterest;
     private final DataRepository dataRepository;
 
@@ -27,7 +27,7 @@ public class InterestViewModel extends AndroidViewModel {
         mObservableInterests.setValue(null);
         mTotalInterest.setValue(0);
         //Get data from room database.
-        LiveData<List<InterestModel>> allInterests = ((BasicApp) application).getDataRepository()
+        LiveData<List<Interest>> allInterests = ((BasicApp) application).getDataRepository()
                 .getAllInterests();
         LiveData<Integer> totalInterest = ((BasicApp) application).getDataRepository().getTotalSelectedInterests();
         // observe the changes of the products from the database and forward them
@@ -39,15 +39,15 @@ public class InterestViewModel extends AndroidViewModel {
      * Exposing LiveData to the ui to be observed.
      */
 
-    public void saveAllInterests(List<InterestModel> interestModels) {
-        dataRepository.saveAllInterests(interestModels);
+    public void saveAllInterests(List<Interest> interests) {
+        dataRepository.saveAllInterests(interests);
     }
 
-    public LiveData<List<InterestModel>> getObservableInterests() {
+    public LiveData<List<Interest>> getObservableInterests() {
         return mObservableInterests;
     }
 
-    public void selectInterest(InterestModel interest) {
+    public void selectInterest(Interest interest) {
         dataRepository.selectInterest(interest);
     }
 
@@ -55,8 +55,8 @@ public class InterestViewModel extends AndroidViewModel {
         return mTotalInterest;
     }
 
-    public void addInterest(InterestModel interestModel) {
-        dataRepository.addInterest(interestModel);
+    public void addInterest(Interest interest) {
+        dataRepository.addInterest(interest);
     }
 
 }

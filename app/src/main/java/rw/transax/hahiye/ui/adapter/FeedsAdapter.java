@@ -11,26 +11,26 @@ import java.util.List;
 import androidx.annotation.NonNull;
 import androidx.recyclerview.widget.RecyclerView;
 import rw.transax.hahiye.R;
-import rw.transax.hahiye.callback.ClosingCreateFeedView;
+import rw.transax.hahiye.callback.CreatingFeedCallback;
 import rw.transax.hahiye.callback.FeedItemClickCallback;
-import rw.transax.hahiye.model.FeedsModel;
+import rw.transax.hahiye.model.Feeds;
 import rw.transax.hahiye.ui.viewHolder.BaseViewHolder;
 import rw.transax.hahiye.ui.viewHolder.CreateFeedViewHolder;
 import rw.transax.hahiye.ui.viewHolder.ImageTypeViewHolder;
 import rw.transax.hahiye.ui.viewHolder.TextTypeViewHolder;
 
-public class FeedsAdapter extends RecyclerView.Adapter<BaseViewHolder<FeedsModel>> {
+public class FeedsAdapter extends RecyclerView.Adapter<BaseViewHolder<Feeds>> {
 
     private static final int TEXT_TYPE = 0;
     private static final int IMAGE_TYPE = 1;
     private static final int CREATE_POST_TYPE = 2;
 
-    private List<FeedsModel> dataSet;
+    private List<Feeds> dataSet;
     private FeedItemClickCallback clickCallback;
-    private ClosingCreateFeedView createFeedView;
+    private CreatingFeedCallback createFeedView;
     private Context mContext;
 
-    public FeedsAdapter(Context context, FeedItemClickCallback clickCallback, ClosingCreateFeedView feedView) {
+    public FeedsAdapter(Context context, FeedItemClickCallback clickCallback, CreatingFeedCallback feedView) {
         mContext = context;
         this.clickCallback = clickCallback;
         this.createFeedView = feedView;
@@ -38,7 +38,7 @@ public class FeedsAdapter extends RecyclerView.Adapter<BaseViewHolder<FeedsModel
 
     @NonNull
     @Override
-    public BaseViewHolder<FeedsModel> onCreateViewHolder(@NonNull ViewGroup parent, int viewType) {
+    public BaseViewHolder<Feeds> onCreateViewHolder(@NonNull ViewGroup parent, int viewType) {
         LayoutInflater layoutInflater = LayoutInflater.from(parent.getContext());
         View view;
         switch (viewType) {
@@ -61,12 +61,12 @@ public class FeedsAdapter extends RecyclerView.Adapter<BaseViewHolder<FeedsModel
     }
 
     @Override
-    public void onBindViewHolder(@NonNull BaseViewHolder<FeedsModel> holder, int position) {
-        FeedsModel model = dataSet.get(position);
+    public void onBindViewHolder(@NonNull BaseViewHolder<Feeds> holder, int position) {
+        Feeds model = dataSet.get(position);
         holder.bind(model);
     }
 
-    public void add(List<FeedsModel> feedData) {
+    public void add(List<Feeds> feedData) {
         if (dataSet == null) dataSet = new ArrayList<>();
         dataSet.clear();
         dataSet.addAll(feedData);
@@ -81,7 +81,7 @@ public class FeedsAdapter extends RecyclerView.Adapter<BaseViewHolder<FeedsModel
      * @param model make sure type of this view equals to CREATE_POST_TYPE = 2;
      */
 
-    public void createFeed(FeedsModel model) {
+    public void createFeed(Feeds model) {
         if (getItemViewType(2) != CREATE_POST_TYPE) {
             dataSet.add(2, model);
             notifyItemInserted(2);
@@ -101,7 +101,7 @@ public class FeedsAdapter extends RecyclerView.Adapter<BaseViewHolder<FeedsModel
 
     @Override
     public int getItemViewType(int position) {
-        FeedsModel data = dataSet.get(position);
+        Feeds data = dataSet.get(position);
         switch (data.getType()) {
             case 0:
                 return TEXT_TYPE;

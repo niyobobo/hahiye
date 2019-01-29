@@ -7,7 +7,7 @@ import androidx.room.PrimaryKey;
 import java.util.Date;
 
 @Entity(tableName = "user")
-public class UserModel {
+public class User {
     @PrimaryKey(autoGenerate = true)
     private int id;
     private String uid;
@@ -22,12 +22,12 @@ public class UserModel {
     //private List<PlaceModel> follows;
     //private List<InterestModel> interested;
     @Ignore
-    public UserModel() {
+    public User() {
     }
 
     @Ignore
-    public UserModel(String uid, String name, String username, String password, String email,
-                     String profile_url, boolean verified, Date created_at) {
+    public User(String uid, String name, String username, String password, String email,
+                String profile_url, boolean verified, Date created_at) {
         this.uid = uid;
         this.name = name;
         this.username = username;
@@ -40,8 +40,8 @@ public class UserModel {
         //this.interested = interested;
     }
 
-    public UserModel(int id, String uid, String name, String username, String password,
-                     String email, String profile_url, boolean verified, Date created_at) {
+    public User(int id, String uid, String name, String username, String password,
+                String email, String profile_url, boolean verified, Date created_at) {
         this.id = id;
         this.uid = uid;
         this.name = name;

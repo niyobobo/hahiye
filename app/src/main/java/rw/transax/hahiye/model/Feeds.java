@@ -1,16 +1,16 @@
 package rw.transax.hahiye.model;
 
-public class FeedsModel {
+public class Feeds {
 
     private int type;
     private String description;
     private String date;
 
-    public FeedsModel() {
+    public Feeds() {
 
     }
 
-    public FeedsModel(int type, String description, String date) {
+    public Feeds(int type, String description, String date) {
         this.type = type;
         this.description = description;
         this.date = date;

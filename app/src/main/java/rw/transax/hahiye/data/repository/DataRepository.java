@@ -20,8 +20,8 @@ import rw.transax.hahiye.AuthResponse;
 import rw.transax.hahiye.AuthServiceGrpc;
 import rw.transax.hahiye.data.local.database.AppDatabase;
 import rw.transax.hahiye.data.remote.RemoteData;
-import rw.transax.hahiye.model.InterestModel;
-import rw.transax.hahiye.model.UserModel;
+import rw.transax.hahiye.model.Interest;
+import rw.transax.hahiye.model.User;
 import rw.transax.hahiye.utils.AppExecutors;
 import rw.transax.hahiye.utils.CustomOkHttpChannelBuilder;
 import rw.transax.hahiye.utils.JwtCallCredential;
@@ -33,7 +33,7 @@ public class DataRepository {
     private static DataRepository sInstance;
     private final AppDatabase mDatabase;
     private final AppExecutors appExecutors;
-    private MediatorLiveData<List<InterestModel>> mObservableInterests;
+    private MediatorLiveData<List<Interest>> mObservableInterests;
 
     private DataRepository(final AppDatabase database) {
         mDatabase = database;
@@ -62,11 +62,11 @@ public class DataRepository {
      * Data related to interests
      */
 
-    public void saveAllInterests(List<InterestModel> interestModels) {
-        mDatabase.interestDao().saveInterests(interestModels);
+    public void saveAllInterests(List<Interest> interests) {
+        mDatabase.interestDao().saveInterests(interests);
     }
 
-    public LiveData<List<InterestModel>> getAllInterests() {
+    public LiveData<List<Interest>> getAllInterests() {
         return mObservableInterests;
     }
 
@@ -74,14 +74,14 @@ public class DataRepository {
         return mDatabase.interestDao().totalSelectedInterest();
     }
 
-    public void selectInterest(InterestModel interestModel) {
+    public void selectInterest(Interest interest) {
         appExecutors.getDiskIO().execute(() ->
-                mDatabase.interestDao().selectInterest(interestModel.isFollowed(), interestModel.getUid()));
+                mDatabase.interestDao().selectInterest(interest.isFollowed(), interest.getUid()));
     }
 
-    public void addInterest(InterestModel interestModel) {
+    public void addInterest(Interest interest) {
         appExecutors.getDiskIO().execute(() ->
-                mDatabase.interestDao().insert(interestModel));
+                mDatabase.interestDao().insert(interest));
     }
 
     /**
@@ -119,7 +119,7 @@ public class DataRepository {
 
                 Date createdAt = new SimpleDateFormat().parse(timeStamp);
 
-                UserModel userModel = new UserModel(
+                User user = new User(
                         account.getId(),
                         account.getName(),
                         account.getUsername(),
@@ -129,7 +129,7 @@ public class DataRepository {
                         account.getVerified(),
                         createdAt
                 );
-                appExecutors.getDiskIO().execute(() -> mDatabase.userDao().insert(userModel));
+                appExecutors.getDiskIO().execute(() -> mDatabase.userDao().insert(user));
 
             } catch (StatusRuntimeException | ParseException e) {
                 e.printStackTrace();
@@ -138,7 +138,7 @@ public class DataRepository {
 
     }
 
-    public LiveData<UserModel> getUserInformation() {
+    public LiveData<User> getUserInformation() {
         return mDatabase.userDao().getUserInfo();
     }
 }

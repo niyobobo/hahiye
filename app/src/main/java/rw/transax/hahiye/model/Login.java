@@ -1,6 +1,6 @@
 package rw.transax.hahiye.model;
 
-public class LoginModel {
+public class Login {
 
     private String userEmail;
     private String userPassword;

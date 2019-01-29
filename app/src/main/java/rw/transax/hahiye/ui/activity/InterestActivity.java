@@ -22,7 +22,7 @@ import butterknife.BindView;
 import butterknife.ButterKnife;
 import rw.transax.hahiye.R;
 import rw.transax.hahiye.callback.InterestSelected;
-import rw.transax.hahiye.model.InterestModel;
+import rw.transax.hahiye.model.Interest;
 import rw.transax.hahiye.viewModel.InterestViewModel;
 
 public class InterestActivity extends AppCompatActivity implements
@@ -64,9 +64,9 @@ public class InterestActivity extends AppCompatActivity implements
         mActionButton.setOnClickListener(this);
     }
 
-    private void displayInterestOnScreen(List<InterestModel> interestList) {
+    private void displayInterestOnScreen(List<Interest> interestList) {
         entryChipGroup.removeAllViews();
-        for (InterestModel interest : interestList) {
+        for (Interest interest : interestList) {
             final Chip customChip = newChip(interest.getName());
             if (interest.isFollowed()) customChip.setChecked(true);
             customChip.setOnClickListener(v -> this.onInterestSelected(interest));
@@ -90,7 +90,7 @@ public class InterestActivity extends AppCompatActivity implements
     }
 
     @Override
-    public void onInterestSelected(InterestModel interest) {
+    public void onInterestSelected(Interest interest) {
         interest.setFollowed(!interest.isFollowed());
         viewModel.selectInterest(interest);
     }
